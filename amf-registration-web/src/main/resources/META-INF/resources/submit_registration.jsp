@@ -26,6 +26,8 @@
 		</portlet:actionURL>
 
 		<aui:form action="<%= submitRegistrationURL %>" method="post" name="fm">
+			<liferay-ui:error exception="<%= AddressZipException.class %>" message="the-zip-code-must-be-five-digits-long" />
+
 			<liferay-ui:error exception="<%= AlphanumericException.class %>">
 
 				<%
@@ -34,8 +36,6 @@
 
 				<liferay-ui:message key='<%= "the-field-" + ae.fieldName + "-must-be-alphanumeric" %>' />
 			</liferay-ui:error>
-
-			<liferay-ui:error exception="<%= AddressZipException.class %>" message="the-zip-code-must-be-five-digits-long" />
 
 			<liferay-ui:error exception="<%= MaxCharacterException.class %>">
 
@@ -94,10 +94,10 @@
 			<liferay-ui:error exception="<%= UserUsernameException.MustBeUnique.class %>" message="the-username-must-be-unique" />
 
 			<aui:fieldset label="basic-info">
-				<aui:input label="first-name" name="first_name" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "first_name", "a") %>' />
-				<aui:input label="last-name" name="last_name" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "last_name", "a") %>' />
-				<aui:input label="email-address" name="email_address" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "email_address", "a@a.com") %>' />
-				<aui:input label="username" name="username" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "username", "timbo") %>' />
+				<aui:input label="first-name" name="first_name" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "first_name") %>' />
+				<aui:input label="last-name" name="last_name" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "last_name") %>' />
+				<aui:input label="email-address" name="email_address" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "email_address") %>' />
+				<aui:input label="username" name="username" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "username") %>' />
 
 				<aui:select label="gender" name="male" required="true" value='<%= ParamUtil.getString(renderRequest, "male") %>'>
 					<aui:option label="male" value="true" />
@@ -121,9 +121,9 @@
 
 				<aui:input label="birthday-day" name="b_day" required="true" type="number" value='<%= ParamUtil.getString(renderRequest, "b_day", "1") %>' />
 				<aui:input label="birthday-year" name="b_year" required="true" type="number" value='<%= ParamUtil.getString(renderRequest, "b_year", "1970") %>' />
-				<aui:input label="password" name="password1" required="true" type="password" value='<%= ParamUtil.getString(renderRequest, "password1", "fffffffF7&") %>' />
+				<aui:input label="password" name="password1" required="true" type="password" value='<%= ParamUtil.getString(renderRequest, "password1") %>' />
 
-				<aui:input label="confirm-password" name="password2" required="true" type="password" value='<%= ParamUtil.getString(renderRequest, "password2", "fffffffF7&") %>'>
+				<aui:input label="confirm-password" name="password2" required="true" type="password" value='<%= ParamUtil.getString(renderRequest, "password2") %>'>
 					<aui:validator name="equalTo">
 						"#<portlet:namespace />password1"
 					</aui:validator>
@@ -131,16 +131,16 @@
 			</aui:fieldset>
 
 			<aui:fieldset label="phone">
-				<aui:input label="home-phone" name="home_phone" type="text" value='<%= ParamUtil.getString(renderRequest, "home_phone", "9999999999") %>' />
-				<aui:input label="mobile-phone" name="mobile_phone" type="text" value='<%= ParamUtil.getString(renderRequest, "mobile_phone", "9999999999") %>' />
+				<aui:input label="home-phone" name="home_phone" type="text" value='<%= ParamUtil.getString(renderRequest, "home_phone") %>' />
+				<aui:input label="mobile-phone" name="mobile_phone" type="text" value='<%= ParamUtil.getString(renderRequest, "mobile_phone") %>' />
 			</aui:fieldset>
 
 			<aui:fieldset label="billing-address-us-only">
-				<aui:input label="address-1" name="address1" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "address1", "a") %>' />
-				<aui:input label="address-2" name="address2" type="text" value='<%= ParamUtil.getString(renderRequest, "address2", "a") %>' />
-				<aui:input label="city" name="city" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "city", "a") %>' />
-				<aui:input label="state" name="state" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "state", "ca") %>' />
-				<aui:input label="zip-code" name="zip" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "zip", "55555") %>' />
+				<aui:input label="address-1" name="address1" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "address1") %>' />
+				<aui:input label="address-2" name="address2" type="text" value='<%= ParamUtil.getString(renderRequest, "address2") %>' />
+				<aui:input label="city" name="city" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "city") %>' />
+				<aui:input label="state" name="state" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "state") %>' />
+				<aui:input label="zip-code" name="zip" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "zip") %>' />
 			</aui:fieldset>
 
 			<aui:fieldset label="misc">
@@ -158,9 +158,9 @@
 
 				</aui:select>
 
-				<aui:input label="security-answer" name="security_answer" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "security_answer", "a") %>' />
+				<aui:input label="security-answer" name="security_answer" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "security_answer") %>' />
 				<aui:button onClick='<%= renderResponse.getNamespace() + "viewTermsOfUse();" %>' value="terms-of-use" />
-				<aui:input label="i-have-read-understand-and-agree-with-the-terms-of-use-governing-my-access-to-and-use-of-the-acme-movie-fanatic-website" name="accepted_tou" required="true" type="checkbox" value='<%= ParamUtil.getString(renderRequest, "accepted_tou", "true") %>' />
+				<aui:input label="i-have-read-understand-and-agree-with-the-terms-of-use-governing-my-access-to-and-use-of-the-acme-movie-fanatic-website" name="accepted_tou" required="true" type="checkbox" value='<%= ParamUtil.getString(renderRequest, "accepted_tou") %>' />
 			</aui:fieldset>
 
 			<aui:button-row>
