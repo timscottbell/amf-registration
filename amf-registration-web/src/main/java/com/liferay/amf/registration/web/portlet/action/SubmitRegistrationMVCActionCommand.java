@@ -62,10 +62,20 @@ public class SubmitRegistrationMVCActionCommand implements MVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
 
+		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
+			WebKeys.THEME_DISPLAY);
+
+		User user = themeDisplay.getUser();
+
+		Company company = themeDisplay.getCompany();
+
 		String firstName = ParamUtil.getString(actionRequest, "first_name");
 		String lastName = ParamUtil.getString(actionRequest, "last_name");
 		String emailAddress = ParamUtil.getString(
 			actionRequest, "email_address");
+
+		Locale locale = themeDisplay.getLocale();
+
 		String username = ParamUtil.getString(actionRequest, "username");
 		boolean male = ParamUtil.getBoolean(actionRequest, "male");
 		int birthdayMonth = ParamUtil.getInteger(actionRequest, "b_month");
@@ -86,15 +96,6 @@ public class SubmitRegistrationMVCActionCommand implements MVCActionCommand {
 			actionRequest, "security_answer");
 		boolean acceptedTOU = ParamUtil.getBoolean(
 			actionRequest, "accepted_tou");
-
-		ThemeDisplay themeDisplay = (ThemeDisplay)actionRequest.getAttribute(
-			WebKeys.THEME_DISPLAY);
-
-		User user = themeDisplay.getUser();
-
-		Company company = themeDisplay.getCompany();
-
-		Locale locale = themeDisplay.getLocale();
 
 		ServiceContext serviceContext = null;
 
