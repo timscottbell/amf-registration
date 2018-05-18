@@ -14,13 +14,26 @@
 
 package com.liferay.amf.registration.api;
 
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
+import com.liferay.portal.kernel.service.ServiceContext;
+
+import java.util.Locale;
 
 /**
  * @author Timothy Bell
  */
 public interface AMFRegistrationService {
 
-	public User registerUser(User user);
+	public User registerUser(
+			long creatorUserId, long companyId, String firstName,
+			String lastName, String emailAddress, Locale locale,
+			String username, boolean male, int birthdayMonth, int birthdayDay,
+			int birthdayYear, String password1, String password2,
+			String homePhone, String mobilePhone, String address1,
+			String address2, String city, String state, String zip,
+			String securityQuestion, String securityAnswer, boolean acceptedTOU,
+			ServiceContext serviceContext)
+		throws PortalException;
 
 }

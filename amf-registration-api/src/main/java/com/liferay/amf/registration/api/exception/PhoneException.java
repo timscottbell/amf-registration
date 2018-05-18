@@ -12,28 +12,19 @@
  * details.
  */
 
-package com.liferay.amf.registration.web.constants;
+package com.liferay.amf.registration.api.exception;
+
+import com.liferay.portal.kernel.exception.PortalException;
 
 /**
  * @author Timothy Bell
  */
-public class AMFRegistrationConstants {
+public class PhoneException extends PortalException {
 
-	public static final String SECURITY_QUESTION_1 =
-		"what-is-your-mother's-maiden-name";
+	public PhoneException(String type) {
+		this.type = type;
+	}
 
-	public static final String SECURITY_QUESTION_2 =
-		"what-is-the-make-of-your-first-car";
-
-	public static final String SECURITY_QUESTION_3 =
-		"what-is-your-high-school-mascot";
-
-	public static final String SECURITY_QUESTION_4 =
-		"who-is-your-favorite-actor";
-
-	public static final String[] SECURITY_QUESTIONS = {
-		SECURITY_QUESTION_1, SECURITY_QUESTION_2, SECURITY_QUESTION_3,
-		SECURITY_QUESTION_4
-	};
+	public final String type;
 
 }

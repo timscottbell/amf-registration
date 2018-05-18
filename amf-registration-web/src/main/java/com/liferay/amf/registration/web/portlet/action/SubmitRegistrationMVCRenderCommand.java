@@ -15,11 +15,10 @@
 package com.liferay.amf.registration.web.portlet.action;
 
 import com.liferay.amf.registration.web.constants.AMFRegistrationPortletKeys;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -32,14 +31,13 @@ import org.osgi.service.component.annotations.Component;
 		"mvc.command.name=/submit_registration"
 	}
 )
-public class SubmitRegistrationMVCRenderCommand implements MVCActionCommand {
+public class SubmitRegistrationMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
-	public boolean processAction(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortletException {
+	public String render(
+		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		return false;
+		return "/submit_registration.jsp";
 	}
 
 }

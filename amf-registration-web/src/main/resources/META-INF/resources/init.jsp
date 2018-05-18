@@ -23,9 +23,21 @@ taglib uri="http://liferay.com/tld/portlet" prefix="liferay-portlet" %><%@
 taglib uri="http://liferay.com/tld/theme" prefix="liferay-theme" %><%@
 taglib uri="http://liferay.com/tld/ui" prefix="liferay-ui" %>
 
-<%@ page import="com.liferay.amf.registration.web.constants.AMFRegistrationConstants" %><%@
+<%@ page import="com.liferay.amf.registration.api.constants.AMFRegistrationConstants" %><%@
+page import="com.liferay.amf.registration.api.exception.AlphanumericException" %><%@
+page import="com.liferay.amf.registration.api.exception.MaxCharacterException" %><%@
+page import="com.liferay.amf.registration.api.exception.PhoneException" %><%@
+page import="com.liferay.amf.registration.api.exception.SecurityQuestionException" %><%@
+page import="com.liferay.amf.registration.api.exception.UserBirthdayException" %><%@
+page import="com.liferay.amf.registration.api.exception.UserEmailAddressException" %><%@
+page import="com.liferay.amf.registration.api.exception.UserPasswordException" %><%@
+page import="com.liferay.amf.registration.api.exception.UserUsernameException" %><%@
+page import="com.liferay.portal.kernel.exception.AddressZipException" %><%@
+page import="com.liferay.portal.kernel.exception.RegionCodeException" %><%@
+page import="com.liferay.portal.kernel.exception.TermsOfUseException" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
-page import="com.liferay.portal.kernel.util.HtmlUtil" %>
+page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
+page import="com.liferay.portal.kernel.util.ParamUtil" %>
 
 <%@ page import="java.util.Calendar" %>
 

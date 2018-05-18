@@ -29,8 +29,9 @@ import org.osgi.service.component.annotations.Component;
 	property = {
 		"com.liferay.portlet.display-category=category.tools",
 		"javax.portlet.display-name=Register",
+		"javax.portlet.init-param.copy-request-parameters=true",
 		"javax.portlet.init-param.template-path=/",
-		"javax.portlet.init-param.view-template=/view.jsp",
+		"javax.portlet.init-param.view-template=/submit_registration.jsp",
 		"javax.portlet.name=" + AMFRegistrationPortletKeys.AMF_REGISTRATION,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user"

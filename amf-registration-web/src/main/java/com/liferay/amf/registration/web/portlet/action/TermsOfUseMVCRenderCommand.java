@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Component;
 		"mvc.command.name=/terms_of_use"
 	}
 )
-public class ViewTermsOfUseMVCRenderCommand implements MVCRenderCommand {
+public class TermsOfUseMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(

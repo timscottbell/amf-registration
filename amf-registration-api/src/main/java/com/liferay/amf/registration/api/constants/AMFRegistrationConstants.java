@@ -12,22 +12,28 @@
  * details.
  */
 
-package com.liferay.amf.registration.service;
-
-import com.liferay.amf.registration.api.AMFRegistrationService;
-import com.liferay.portal.kernel.model.User;
-
-import org.osgi.service.component.annotations.Component;
+package com.liferay.amf.registration.api.constants;
 
 /**
  * @author Timothy Bell
  */
-@Component(immediate = true)
-public class AmfRegistrationServiceImpl implements AMFRegistrationService {
+public class AMFRegistrationConstants {
 
-	@Override
-	public User registerUser(User user) {
-		return null;
-	}
+	public static final String SECURITY_QUESTION_1 =
+		"what-is-your-mother's-maiden-name";
+
+	public static final String SECURITY_QUESTION_2 =
+		"what-is-the-make-of-your-first-car";
+
+	public static final String SECURITY_QUESTION_3 =
+		"what-is-your-high-school-mascot";
+
+	public static final String SECURITY_QUESTION_4 =
+		"who-is-your-favorite-actor";
+
+	public static final String[] SECURITY_QUESTIONS = {
+		SECURITY_QUESTION_1, SECURITY_QUESTION_2, SECURITY_QUESTION_3,
+		SECURITY_QUESTION_4
+	};
 
 }
