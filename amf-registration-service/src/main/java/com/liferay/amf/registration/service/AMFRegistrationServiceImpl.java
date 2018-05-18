@@ -301,7 +301,9 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 	protected void validatePhone(String phone, String type)
 		throws PhoneException {
 
-		if (Validator.isNotNull(phone) && (phone.length() != 10)) {
+		if (Validator.isNotNull(phone) &&
+			(!Validator.isDigit(phone) || (phone.length() != 10))) {
+
 			throw new PhoneException(type);
 		}
 	}
