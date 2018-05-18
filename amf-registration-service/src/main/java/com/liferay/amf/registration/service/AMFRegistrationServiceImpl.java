@@ -301,7 +301,7 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 	protected void validatePhone(String phone, String type)
 		throws PhoneException {
 
-		if (Validator.isNotNull(phone) && (phone.length() < 10)) {
+		if (Validator.isNotNull(phone) && (phone.length() != 10)) {
 			throw new PhoneException(type);
 		}
 	}
@@ -311,7 +311,7 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 
 		validateAlphanumeric(username, "username");
 
-		if ((username.length() < _USER_USERNAME_MIN_LENGTH) &&
+		if ((username.length() < _USER_USERNAME_MIN_LENGTH) ||
 			(username.length() > _USER_USERNAME_MAX_LENGTH)) {
 
 			throw new UserUsernameException.MustBeCertainLength(
