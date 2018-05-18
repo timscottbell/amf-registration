@@ -56,6 +56,7 @@
 			</liferay-ui:error>
 
 			<liferay-ui:error exception="<%= RegionCodeException.class %>" message="you-must-use-liferays-state-code" />
+			<liferay-ui:error exception="<%= RequiredFieldException.class %>" message="please-fill-out-all-required-fields" />
 			<liferay-ui:error exception="<%= SecurityQuestionException.class %>" message="you-must-choose-one-of-the-given-questions" />
 			<liferay-ui:error exception="<%= TermsOfUseException.class %>" message="you-must-accept-the-terms-of-use" />
 

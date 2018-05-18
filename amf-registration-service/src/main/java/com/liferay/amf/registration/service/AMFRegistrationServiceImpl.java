@@ -19,6 +19,7 @@ import com.liferay.amf.registration.api.constants.AMFRegistrationConstants;
 import com.liferay.amf.registration.api.exception.AlphanumericException;
 import com.liferay.amf.registration.api.exception.MaxCharacterException;
 import com.liferay.amf.registration.api.exception.PhoneException;
+import com.liferay.amf.registration.api.exception.RequiredFieldException;
 import com.liferay.amf.registration.api.exception.SecurityQuestionException;
 import com.liferay.amf.registration.api.exception.UserBirthdayException;
 import com.liferay.amf.registration.api.exception.UserEmailAddressException;
@@ -164,6 +165,8 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 			String zip)
 		throws PortalException {
 
+		validateRequiredField(address1);
+
 		validateAlphanumeric(address1, _LANGUAGE_KEY_ADDRESS_1);
 
 		validateMaxCharacters(address1, 255, _LANGUAGE_KEY_ADDRESS_1);
@@ -173,6 +176,8 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 
 			validateMaxCharacters(address2, 255, _LANGUAGE_KEY_ADDRESS_2);
 		}
+
+		validateRequiredField(city);
 
 		validateAlphanumeric(city, _LANGUAGE_KEY_CITY);
 
@@ -227,6 +232,10 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 	protected void validateEmailAddress(String emailAddress)
 		throws PortalException {
 
+		validateRequiredField(emailAddress);
+
+		validateMaxCharacters(emailAddress, 255, _LANGUAGE_KEY_EMAIL_ADDRESS);
+
 		Pattern pattern = Pattern.compile(_REGEX_EMAIL_ADDRESS);
 
 		Matcher matcher = pattern.matcher(emailAddress);
@@ -234,17 +243,19 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 		if (!matcher.matches()) {
 			throw new UserEmailAddressException();
 		}
-
-		validateMaxCharacters(emailAddress, 255, _LANGUAGE_KEY_EMAIL_ADDRESS);
 	}
 
 	protected void validateFirstName(String firstName) throws PortalException {
+		validateRequiredField(firstName);
+
 		validateAlphanumeric(firstName, _LANGUAGE_KEY_FIRST_NAME);
 
 		validateMaxCharacters(firstName, 50, _LANGUAGE_KEY_FIRST_NAME);
 	}
 
 	protected void validateLastName(String lastName) throws PortalException {
+		validateRequiredField(lastName);
+
 		validateAlphanumeric(lastName, _LANGUAGE_KEY_LAST_NAME);
 
 		validateMaxCharacters(lastName, 50, _LANGUAGE_KEY_LAST_NAME);
@@ -270,6 +281,8 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 			throw new SecurityQuestionException();
 		}
 
+		validateRequiredField(securityAnswer);
+
 		validateAlphanumeric(securityAnswer, _LANGUAGE_KEY_SECURITY_ANSWER);
 
 		validateMaxCharacters(
@@ -281,7 +294,9 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 	}
 
 	protected void validatePassword(String password1, String password2)
-		throws UserPasswordException {
+		throws PortalException {
+
+		validateRequiredField(password1);
 
 		if (password1.length() < _USER_PASSWORD_LENGTH) {
 			throw new UserPasswordException.MustBeLonger(_USER_PASSWORD_LENGTH);
@@ -310,8 +325,18 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 		}
 	}
 
+	protected void validateRequiredField(String field)
+		throws RequiredFieldException {
+
+		if (Validator.isNull(field)) {
+			throw new RequiredFieldException();
+		}
+	}
+
 	protected void validateUsername(long companyId, String username)
 		throws PortalException {
+
+		validateRequiredField(username);
 
 		validateAlphanumeric(username, "username");
 

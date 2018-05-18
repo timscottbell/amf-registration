@@ -34,6 +34,7 @@ page import="com.liferay.amf.registration.api.exception.UserPasswordException" %
 page import="com.liferay.amf.registration.api.exception.UserUsernameException" %><%@
 page import="com.liferay.portal.kernel.exception.AddressZipException" %><%@
 page import="com.liferay.portal.kernel.exception.RegionCodeException" %><%@
+page import="com.liferay.portal.kernel.exception.RequiredFieldException" %><%@
 page import="com.liferay.portal.kernel.exception.TermsOfUseException" %><%@
 page import="com.liferay.portal.kernel.portlet.LiferayWindowState" %><%@
 page import="com.liferay.portal.kernel.util.HtmlUtil" %><%@
