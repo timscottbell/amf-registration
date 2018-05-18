@@ -87,6 +87,10 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 			birthdayYear, StringPool.BLANK, null, null, null, null, false,
 			serviceContext);
 
+		if (user != null) {
+			throw new PortalException();
+		}
+
 		Country country = _countryService.getCountryByName("united-states");
 
 		Region region = _regionService.getRegion(country.getCountryId(), state);

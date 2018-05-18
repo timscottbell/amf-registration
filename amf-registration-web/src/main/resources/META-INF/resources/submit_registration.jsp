@@ -35,7 +35,7 @@
 				<liferay-ui:message key='<%= "the-field-" + ae.fieldName + "-must-be-alphanumeric" %>' />
 			</liferay-ui:error>
 
-			<liferay-ui:error exception="<%= AddressZipException.class %>" message="the-zip-code-must-be-five-digits" />
+			<liferay-ui:error exception="<%= AddressZipException.class %>" message="the-zip-code-must-be-five-digits-long" />
 
 			<liferay-ui:error exception="<%= MaxCharacterException.class %>">
 
