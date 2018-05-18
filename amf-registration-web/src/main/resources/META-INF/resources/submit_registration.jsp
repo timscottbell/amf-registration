@@ -135,7 +135,7 @@
 				<aui:input label="mobile-phone" name="mobile_phone" type="text" value='<%= ParamUtil.getString(renderRequest, "mobile_phone", "9999999999") %>' />
 			</aui:fieldset>
 
-			<aui:fieldset label="billing-address">
+			<aui:fieldset label="billing-address-us-only">
 				<aui:input label="address-1" name="address1" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "address1", "a") %>' />
 				<aui:input label="address-2" name="address2" type="text" value='<%= ParamUtil.getString(renderRequest, "address2", "a") %>' />
 				<aui:input label="city" name="city" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "city", "a") %>' />
