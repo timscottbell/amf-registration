@@ -168,9 +168,11 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 
 		validateMaxCharacters(address1, 255, _LANGUAGE_KEY_ADDRESS_1);
 
-		validateAlphanumeric(address2, _LANGUAGE_KEY_ADDRESS_2);
+		if (Validator.isNotNull(address2)) {
+			validateAlphanumeric(address2, _LANGUAGE_KEY_ADDRESS_2);
 
-		validateMaxCharacters(address2, 255, _LANGUAGE_KEY_ADDRESS_2);
+			validateMaxCharacters(address2, 255, _LANGUAGE_KEY_ADDRESS_2);
+		}
 
 		validateAlphanumeric(city, _LANGUAGE_KEY_CITY);
 
