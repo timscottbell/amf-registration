@@ -185,7 +185,7 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 			throw new RegionCodeException();
 		}
 
-		if (!Validator.isDigit(zip) && (zip.length() != 5)) {
+		if (!Validator.isDigit(zip) || (zip.length() != 5)) {
 			throw new AddressZipException();
 		}
 	}
