@@ -119,8 +119,8 @@
 					<aui:option label="december" value="<%= Calendar.DECEMBER %>" />
 				</aui:select>
 
-				<aui:input label="birthday-day" name="b_day" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "b_day", "1") %>' />
-				<aui:input label="birthday-year" name="b_year" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "b_year", "1970") %>' />
+				<aui:input label="birthday-day" name="b_day" required="true" type="number" value='<%= ParamUtil.getString(renderRequest, "b_day", "1") %>' />
+				<aui:input label="birthday-year" name="b_year" required="true" type="number" value='<%= ParamUtil.getString(renderRequest, "b_year", "1970") %>' />
 				<aui:input label="password" name="password1" required="true" type="password" value='<%= ParamUtil.getString(renderRequest, "password1", "fffffffF7&") %>' />
 
 				<aui:input label="confirm-password" name="password2" required="true" type="password" value='<%= ParamUtil.getString(renderRequest, "password2", "fffffffF7&") %>'>
