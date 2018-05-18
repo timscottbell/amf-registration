@@ -285,16 +285,16 @@ public class AMFRegistrationServiceImpl implements AMFRegistrationService {
 			throw new UserPasswordException.MustBeLonger(_USER_PASSWORD_LENGTH);
 		}
 
+		if (!password1.equals(password2)) {
+			throw new UserPasswordException.MustMatch();
+		}
+
 		Pattern pattern = Pattern.compile(_REGEX_PASSWORD);
 
 		Matcher matcher = pattern.matcher(password1);
 
 		if (!matcher.matches()) {
 			throw new UserPasswordException.MustComplyWithRegex();
-		}
-
-		if (!password1.equals(password2)) {
-			throw new UserPasswordException.MustMatch();
 		}
 	}
 
