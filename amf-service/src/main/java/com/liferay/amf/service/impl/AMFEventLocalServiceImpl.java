@@ -41,6 +41,8 @@ public class AMFEventLocalServiceImpl extends AMFEventLocalServiceBaseImpl {
 		amfEvent.setType(type);
 		amfEvent.setIpAddress(ipAddress);
 
+		amfEventPersistence.update(amfEvent);
+
 		return amfEvent;
 	}
 
