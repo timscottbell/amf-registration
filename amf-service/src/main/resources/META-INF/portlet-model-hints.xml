@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="com.liferay.amf.model.AMFEvent">
+		<field name="amfEventId" type="long" />
+		<field name="userId" type="long" />
+		<field name="userName" type="String" />
+		<field name="createTime" type="long" />
+		<field name="type" type="int" />
+		<field name="ipAddress" type="String" />
+	</model>
+</model-hints>

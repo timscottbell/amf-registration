@@ -1,0 +1,6 @@
+Bundle-Name: Liferay AMF API
+Bundle-SymbolicName: com.liferay.amf.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	com.liferay.amf.constants,\
+	com.liferay.amf.exception

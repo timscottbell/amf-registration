@@ -1,4 +1,0 @@
-Bundle-Name: Liferay AMF Registration Web
-Bundle-SymbolicName: com.liferay.amf.registration.web
-Bundle-Version: 1.0.0
-Export-Package: com.liferay.amf.registration.web.constants
