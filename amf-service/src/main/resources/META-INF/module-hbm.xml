@@ -3,7 +3,7 @@
 
 <hibernate-mapping auto-import="false" default-lazy="false">
 	<import class="com.liferay.amf.model.AMFEvent" />
-	<class name="com.liferay.amf.model.impl.AMFEventImpl" table="AMF_AMFEvent">
+	<class name="com.liferay.amf.model.impl.AMFEventImpl" table="AMFEvent">
 		<id name="amfEventId" type="long">
 			<generator class="assigned" />
 		</id>
