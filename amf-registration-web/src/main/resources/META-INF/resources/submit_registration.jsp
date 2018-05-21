@@ -132,8 +132,8 @@
 			</aui:fieldset>
 
 			<aui:fieldset label="phone">
-				<aui:input label="home-phone" name="home_phone" type="text" value='<%= ParamUtil.getString(renderRequest, "home_phone") %>' />
-				<aui:input label="mobile-phone" name="mobile_phone" type="text" value='<%= ParamUtil.getString(renderRequest, "mobile_phone") %>' />
+				<aui:input label="home-phone" name="home_phone" type="number" value='<%= ParamUtil.getString(renderRequest, "home_phone") %>' />
+				<aui:input label="mobile-phone" name="mobile_phone" type="number" value='<%= ParamUtil.getString(renderRequest, "mobile_phone") %>' />
 			</aui:fieldset>
 
 			<aui:fieldset label="billing-address-us-only">
@@ -141,7 +141,7 @@
 				<aui:input label="address-2" name="address2" type="text" value='<%= ParamUtil.getString(renderRequest, "address2") %>' />
 				<aui:input label="city" name="city" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "city") %>' />
 				<aui:input label="state" name="state" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "state") %>' />
-				<aui:input label="zip-code" name="zip" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "zip") %>' />
+				<aui:input label="zip-code" name="zip" required="true" type="number" value='<%= ParamUtil.getString(renderRequest, "zip") %>' />
 			</aui:fieldset>
 
 			<aui:fieldset label="misc">
