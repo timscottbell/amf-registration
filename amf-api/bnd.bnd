@@ -2,7 +2,7 @@ Bundle-Name: Liferay AMF API
 Bundle-SymbolicName: com.liferay.amf.api
 Bundle-Version: 1.0.0
 Export-Package:\
-    com.liferay.amf,\
+	com.liferay.amf,\
 	com.liferay.amf.constants,\
 	com.liferay.amf.exception,\
 	com.liferay.amf.model,\
