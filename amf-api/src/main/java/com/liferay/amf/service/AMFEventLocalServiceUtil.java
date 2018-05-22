@@ -155,6 +155,10 @@ public class AMFEventLocalServiceUtil {
 		return getService().getAMFEventsCount();
 	}
 
+	public static int getAMFEventsCount(int type) {
+		return getService().getAMFEventsCount(type);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -228,6 +232,11 @@ public class AMFEventLocalServiceUtil {
 	public static java.util.List<com.liferay.amf.model.AMFEvent> getAMFEvents(
 		int start, int end) {
 		return getService().getAMFEvents(start, end);
+	}
+
+	public static java.util.List<com.liferay.amf.model.AMFEvent> getAMFEvents(
+		int type, int start, int end) {
+		return getService().getAMFEvents(type, start, end);
 	}
 
 	/**
