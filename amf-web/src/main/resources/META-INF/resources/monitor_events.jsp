@@ -16,29 +16,56 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-ui:tabs names="all,registration,login" refresh="<%= false %>" param="type" tabsValues="<%= StringUtil.merge(AMFEventConstants.TYPES_DISPLAY) %>">
-    <liferay-ui:search-container
-        delta="<%= 20 %>"
-        emptyResultsMessage="no-events-were-found"
-        iteratorURL="<%= (PortletURL)renderRequest.getAttribute("monitorEventsURL") %>"
-        total="<%= (int)renderRequest.getAttribute("total") %>"
-    >
+<liferay-ui:tabs
+	names="all,registration,login"
+	param="type"
+	refresh="<%= false %>"
+	tabsValues="<%= StringUtil.merge(AMFEventConstants.TYPES_DISPLAY) %>"
+>
+	<%--<%--%>
+	<%--PortletURL iteratorURL = renderResponse.createRenderURL();--%>
 
-        <liferay-ui:search-container-results results="<%= (List<AMFEvent>)renderRequest.getAttribute("results") %>">
-            <liferay-ui:search-container-row
-                className="com.liferay.amf.model.AMFEvent"
-                keyProperty="amfEventId"
-                modelVar="amfEvent"
-            >
-                <liferay-ui:search-container-column-text
-                    value="<%= HtmlUtil.escape(amfEvent.getUserName()) %>"
-                />
-            </liferay-ui:search-container-row>
+	<%--iteratorURL.setParameter("mvcRenderCommandName", "/monitor_events");--%>
 
-            <liferay-ui:search-iterator
-                    markupView="lexicon"
-                    paginate="<%= true %>"
-            />
-        </liferay-ui:search-container-results>
-    </liferay-ui:search-container>
+	<%--int type = ParamUtil.getInteger(request, "type", AMFEventConstants.TYPE_ANY);--%>
+
+	<%--iteratorURL.setParameter("type", String.valueOf(type));--%>
+	<%--%>--%>
+
+	<liferay-ui:search-container
+		delta="<%= 20 %>"
+		emptyResultsMessage="no-events-were-found"
+		total="<%= AMFEventLocalServiceUtil.getAMFEventsCount(1) %>"
+	>
+		<liferay-ui:search-container-results>
+
+			<%
+			List<AMFEvent> amfEvents = AMFEventLocalServiceUtil.getAMFEvents(1, searchContainer.getStart(), searchContainer.getEnd());
+
+			searchContainer.setResults(amfEvents);
+			%>
+
+			<liferay-ui:search-container-row
+				className="com.liferay.amf.model.AMFEvent"
+				escapedModel="<%= true %>"
+				keyProperty="amfEventId"
+				modelVar="amfEvent"
+			>
+
+				<%
+				DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd HH:mm:ss", themeDisplay.getLocale(), themeDisplay.getTimeZone());
+
+				String formattedDate = dateFormat.format(new Date(amfEvent.getCreateTime()));
+				%>
+
+				<liferay-ui:search-container-column-text value="<%= formattedDate %>" />
+				<liferay-ui:search-container-column-text value="<%= amfEvent.getUserName() %>" />
+				<liferay-ui:search-container-column-text value="<%= StringPool.OPEN_PARENTHESIS + amfEvent.getUserId() + StringPool.CLOSE_PARENTHESIS %>" />
+				<liferay-ui:search-container-column-text value="<%= amfEvent.getIpAddress() %>" />
+				<liferay-ui:search-container-column-text value="<%= AMFEventConstants.getTypeLabel(amfEvent.getType()) %>" />
+			</liferay-ui:search-container-row>
+
+			<liferay-ui:search-iterator />
+		</liferay-ui:search-container-results>
+	</liferay-ui:search-container>
 </liferay-ui:tabs>

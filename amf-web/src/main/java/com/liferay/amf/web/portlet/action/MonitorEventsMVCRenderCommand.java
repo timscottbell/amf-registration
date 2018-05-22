@@ -23,7 +23,6 @@ import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.util.List;
 
-import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -66,13 +65,6 @@ public class MonitorEventsMVCRenderCommand implements MVCRenderCommand {
 
 		renderRequest.setAttribute("results", amfEvents);
 		renderRequest.setAttribute("total", amfEventsCount);
-
-		PortletURL portletURL = renderResponse.createRenderURL();
-
-		portletURL.setParameter("mvcRenderCommandName", "/monitor_events");
-		portletURL.setParameter("type", String.valueOf(type));
-
-		renderRequest.setAttribute("monitorEventsURL", portletURL);
 
 		return "/monitor_events.jsp";
 	}

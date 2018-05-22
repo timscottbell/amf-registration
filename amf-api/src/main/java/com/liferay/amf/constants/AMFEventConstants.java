@@ -14,6 +14,8 @@
 
 package com.liferay.amf.constants;
 
+import com.liferay.portal.kernel.util.StringPool;
+
 /**
  * @author Timothy Bell
  */
@@ -28,4 +30,14 @@ public class AMFEventConstants {
 	public static final int[] TYPES_DISPLAY =
 		{TYPE_ANY, TYPE_REGISTER, TYPE_LOGIN};
 
+	public static String getTypeLabel(int type) {
+		if (type == TYPE_LOGIN) {
+			return "login";
+		}
+		else if (type == TYPE_REGISTER) {
+			return "registration";
+		}
+
+		return StringPool.BLANK;
+	}
 }
