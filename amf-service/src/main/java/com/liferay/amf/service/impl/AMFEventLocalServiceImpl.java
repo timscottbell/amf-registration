@@ -19,11 +19,14 @@ import com.liferay.amf.service.base.AMFEventLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 
+import java.util.List;
+
 /**
  * @author Timothy Bell
  */
 public class AMFEventLocalServiceImpl extends AMFEventLocalServiceBaseImpl {
 
+	@Override
 	public AMFEvent addAMFEvent(long userId, int type, String ipAddress)
 		throws PortalException {
 
@@ -44,6 +47,16 @@ public class AMFEventLocalServiceImpl extends AMFEventLocalServiceBaseImpl {
 		amfEventPersistence.update(amfEvent);
 
 		return amfEvent;
+	}
+
+	@Override
+	public List<AMFEvent> getAMFEvents(int type, int start, int end) {
+		return amfEventPersistence.findByType(type, start, end);
+	}
+
+	@Override
+	public int getAMFEventsCount(int type) {
+		return amfEventPersistence.countByType(type);
 	}
 
 }

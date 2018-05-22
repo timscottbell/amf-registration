@@ -19,8 +19,13 @@ package com.liferay.amf.constants;
  */
 public class AMFEventConstants {
 
+	public static final int TYPE_ANY = -1;
+
 	public static final int TYPE_LOGIN = 1;
 
 	public static final int TYPE_REGISTER = 2;
+
+	public static final int[] TYPES_DISPLAY =
+		{TYPE_ANY, TYPE_REGISTER, TYPE_LOGIN};
 
 }

@@ -28,15 +28,15 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"com.liferay.portlet.display-category=category.tools",
-		"javax.portlet.display-name=AMF Registration",
+		"javax.portlet.display-name=Register",
 		"javax.portlet.init-param.copy-request-parameters=true",
 		"javax.portlet.init-param.template-path=/",
-		"javax.portlet.init-param.view-template=/submit_registration.jsp",
-		"javax.portlet.name=" + AMFPortletKeys.AMF_REGISTRATION,
+		"javax.portlet.init-param.view-template=/monitor_events.jsp",
+		"javax.portlet.name=" + AMFPortletKeys.AMF_EVENT_MONITORING,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user"
 	},
 	service = Portlet.class
 )
-public class AMFRegistrationPortlet extends MVCPortlet {
+public class AMFEventMonitorPortlet extends MVCPortlet {
 }
