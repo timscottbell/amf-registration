@@ -15,6 +15,7 @@
 package com.liferay.amf.web.portlet.action;
 
 import com.liferay.amf.AMFRegistrationService;
+import com.liferay.amf.constants.AMFPortletKeys;
 import com.liferay.amf.exception.AlphanumericException;
 import com.liferay.amf.exception.MaxCharacterException;
 import com.liferay.amf.exception.PhoneException;
@@ -22,7 +23,6 @@ import com.liferay.amf.exception.SecurityQuestionException;
 import com.liferay.amf.exception.UserBirthdayException;
 import com.liferay.amf.exception.UserPasswordException;
 import com.liferay.amf.exception.UserUsernameException;
-import com.liferay.amf.web.constants.AMFPortletKeys;
 import com.liferay.portal.kernel.exception.AddressZipException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.RegionCodeException;

@@ -12,32 +12,17 @@
  * details.
  */
 
-package com.liferay.amf.web.portlet.action;
-
-import com.liferay.amf.constants.AMFPortletKeys;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
-
-import javax.portlet.RenderRequest;
-import javax.portlet.RenderResponse;
-
-import org.osgi.service.component.annotations.Component;
+package com.liferay.amf.constants;
 
 /**
  * @author Timothy Bell
  */
-@Component(
-	property = {
-		"javax.portlet.name=" + AMFPortletKeys.AMF_REGISTRATION,
-		"mvc.command.name=/terms_of_use"
-	}
-)
-public class TermsOfUseMVCRenderCommand implements MVCRenderCommand {
+public class AMFPortletKeys {
 
-	@Override
-	public String render(
-		RenderRequest renderRequest, RenderResponse renderResponse) {
+	public static final String AMF_EVENT_MONITORING =
+		"com_liferay_amf_web_portlet_AMFEventMonitoringPortlet";
 
-		return "/terms_of_use.jsp";
-	}
+	public static final String AMF_REGISTRATION =
+		"com_liferay_amf_web_portlet_AMFRegistrationPortlet";
 
 }

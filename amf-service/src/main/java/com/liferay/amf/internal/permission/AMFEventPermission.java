@@ -12,17 +12,22 @@
  * details.
  */
 
-package com.liferay.amf.web.constants;
+package com.liferay.amf.internal.permission;
+
+import com.liferay.amf.constants.AMFPortletKeys;
+import com.liferay.portal.kernel.security.permission.PermissionChecker;
 
 /**
  * @author Timothy Bell
  */
-public class AMFPortletKeys {
+public class AMFEventPermission {
 
-	public static final String AMF_EVENT_MONITORING =
-		"com_liferay_amf_web_portlet_AMFEventMonitoringPortlet";
+	public static boolean containsPortletPermission(
+		PermissionChecker permissionChecker, long groupId, String actionId) {
 
-	public static final String AMF_REGISTRATION =
-		"com_liferay_amf_web_portlet_AMFRegistrationPortlet";
+		return permissionChecker.hasPermission(
+			groupId, AMFPortletKeys.AMF_EVENT_MONITORING,
+			AMFPortletKeys.AMF_EVENT_MONITORING, actionId);
+	}
 
 }

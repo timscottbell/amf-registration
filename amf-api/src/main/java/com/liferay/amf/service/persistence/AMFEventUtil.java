@@ -111,6 +111,160 @@ public class AMFEventUtil {
 	}
 
 	/**
+	* Returns all the amf events where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the matching amf events
+	*/
+	public static List<AMFEvent> findByUserId(long userId) {
+		return getPersistence().findByUserId(userId);
+	}
+
+	/**
+	* Returns a range of all the amf events where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AMFEventModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param start the lower bound of the range of amf events
+	* @param end the upper bound of the range of amf events (not inclusive)
+	* @return the range of matching amf events
+	*/
+	public static List<AMFEvent> findByUserId(long userId, int start, int end) {
+		return getPersistence().findByUserId(userId, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the amf events where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AMFEventModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param start the lower bound of the range of amf events
+	* @param end the upper bound of the range of amf events (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching amf events
+	*/
+	public static List<AMFEvent> findByUserId(long userId, int start, int end,
+		OrderByComparator<AMFEvent> orderByComparator) {
+		return getPersistence()
+				   .findByUserId(userId, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the amf events where userId = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AMFEventModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param start the lower bound of the range of amf events
+	* @param end the upper bound of the range of amf events (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching amf events
+	*/
+	public static List<AMFEvent> findByUserId(long userId, int start, int end,
+		OrderByComparator<AMFEvent> orderByComparator, boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByUserId(userId, start, end, orderByComparator,
+			retrieveFromCache);
+	}
+
+	/**
+	* Returns the first amf event in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching amf event
+	* @throws NoSuchEventException if a matching amf event could not be found
+	*/
+	public static AMFEvent findByUserId_First(long userId,
+		OrderByComparator<AMFEvent> orderByComparator)
+		throws com.liferay.amf.exception.NoSuchEventException {
+		return getPersistence().findByUserId_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the first amf event in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching amf event, or <code>null</code> if a matching amf event could not be found
+	*/
+	public static AMFEvent fetchByUserId_First(long userId,
+		OrderByComparator<AMFEvent> orderByComparator) {
+		return getPersistence().fetchByUserId_First(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last amf event in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching amf event
+	* @throws NoSuchEventException if a matching amf event could not be found
+	*/
+	public static AMFEvent findByUserId_Last(long userId,
+		OrderByComparator<AMFEvent> orderByComparator)
+		throws com.liferay.amf.exception.NoSuchEventException {
+		return getPersistence().findByUserId_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the last amf event in the ordered set where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching amf event, or <code>null</code> if a matching amf event could not be found
+	*/
+	public static AMFEvent fetchByUserId_Last(long userId,
+		OrderByComparator<AMFEvent> orderByComparator) {
+		return getPersistence().fetchByUserId_Last(userId, orderByComparator);
+	}
+
+	/**
+	* Returns the amf events before and after the current amf event in the ordered set where userId = &#63;.
+	*
+	* @param amfEventId the primary key of the current amf event
+	* @param userId the user ID
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next amf event
+	* @throws NoSuchEventException if a amf event with the primary key could not be found
+	*/
+	public static AMFEvent[] findByUserId_PrevAndNext(long amfEventId,
+		long userId, OrderByComparator<AMFEvent> orderByComparator)
+		throws com.liferay.amf.exception.NoSuchEventException {
+		return getPersistence()
+				   .findByUserId_PrevAndNext(amfEventId, userId,
+			orderByComparator);
+	}
+
+	/**
+	* Removes all the amf events where userId = &#63; from the database.
+	*
+	* @param userId the user ID
+	*/
+	public static void removeByUserId(long userId) {
+		getPersistence().removeByUserId(userId);
+	}
+
+	/**
+	* Returns the number of amf events where userId = &#63;.
+	*
+	* @param userId the user ID
+	* @return the number of matching amf events
+	*/
+	public static int countByUserId(long userId) {
+		return getPersistence().countByUserId(userId);
+	}
+
+	/**
 	* Returns all the amf events where type = &#63;.
 	*
 	* @param type the type
@@ -260,6 +414,173 @@ public class AMFEventUtil {
 	*/
 	public static int countByType(int type) {
 		return getPersistence().countByType(type);
+	}
+
+	/**
+	* Returns all the amf events where userId = &#63; and type = &#63;.
+	*
+	* @param userId the user ID
+	* @param type the type
+	* @return the matching amf events
+	*/
+	public static List<AMFEvent> findByU_T(long userId, int type) {
+		return getPersistence().findByU_T(userId, type);
+	}
+
+	/**
+	* Returns a range of all the amf events where userId = &#63; and type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AMFEventModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param type the type
+	* @param start the lower bound of the range of amf events
+	* @param end the upper bound of the range of amf events (not inclusive)
+	* @return the range of matching amf events
+	*/
+	public static List<AMFEvent> findByU_T(long userId, int type, int start,
+		int end) {
+		return getPersistence().findByU_T(userId, type, start, end);
+	}
+
+	/**
+	* Returns an ordered range of all the amf events where userId = &#63; and type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AMFEventModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param type the type
+	* @param start the lower bound of the range of amf events
+	* @param end the upper bound of the range of amf events (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @return the ordered range of matching amf events
+	*/
+	public static List<AMFEvent> findByU_T(long userId, int type, int start,
+		int end, OrderByComparator<AMFEvent> orderByComparator) {
+		return getPersistence()
+				   .findByU_T(userId, type, start, end, orderByComparator);
+	}
+
+	/**
+	* Returns an ordered range of all the amf events where userId = &#63; and type = &#63;.
+	*
+	* <p>
+	* Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to {@link QueryUtil#ALL_POS} will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent and pagination is required (<code>start</code> and <code>end</code> are not {@link QueryUtil#ALL_POS}), then the query will include the default ORDER BY logic from {@link AMFEventModelImpl}. If both <code>orderByComparator</code> and pagination are absent, for performance reasons, the query will not have an ORDER BY clause and the returned result set will be sorted on by the primary key in an ascending order.
+	* </p>
+	*
+	* @param userId the user ID
+	* @param type the type
+	* @param start the lower bound of the range of amf events
+	* @param end the upper bound of the range of amf events (not inclusive)
+	* @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	* @param retrieveFromCache whether to retrieve from the finder cache
+	* @return the ordered range of matching amf events
+	*/
+	public static List<AMFEvent> findByU_T(long userId, int type, int start,
+		int end, OrderByComparator<AMFEvent> orderByComparator,
+		boolean retrieveFromCache) {
+		return getPersistence()
+				   .findByU_T(userId, type, start, end, orderByComparator,
+			retrieveFromCache);
+	}
+
+	/**
+	* Returns the first amf event in the ordered set where userId = &#63; and type = &#63;.
+	*
+	* @param userId the user ID
+	* @param type the type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching amf event
+	* @throws NoSuchEventException if a matching amf event could not be found
+	*/
+	public static AMFEvent findByU_T_First(long userId, int type,
+		OrderByComparator<AMFEvent> orderByComparator)
+		throws com.liferay.amf.exception.NoSuchEventException {
+		return getPersistence().findByU_T_First(userId, type, orderByComparator);
+	}
+
+	/**
+	* Returns the first amf event in the ordered set where userId = &#63; and type = &#63;.
+	*
+	* @param userId the user ID
+	* @param type the type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the first matching amf event, or <code>null</code> if a matching amf event could not be found
+	*/
+	public static AMFEvent fetchByU_T_First(long userId, int type,
+		OrderByComparator<AMFEvent> orderByComparator) {
+		return getPersistence().fetchByU_T_First(userId, type, orderByComparator);
+	}
+
+	/**
+	* Returns the last amf event in the ordered set where userId = &#63; and type = &#63;.
+	*
+	* @param userId the user ID
+	* @param type the type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching amf event
+	* @throws NoSuchEventException if a matching amf event could not be found
+	*/
+	public static AMFEvent findByU_T_Last(long userId, int type,
+		OrderByComparator<AMFEvent> orderByComparator)
+		throws com.liferay.amf.exception.NoSuchEventException {
+		return getPersistence().findByU_T_Last(userId, type, orderByComparator);
+	}
+
+	/**
+	* Returns the last amf event in the ordered set where userId = &#63; and type = &#63;.
+	*
+	* @param userId the user ID
+	* @param type the type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the last matching amf event, or <code>null</code> if a matching amf event could not be found
+	*/
+	public static AMFEvent fetchByU_T_Last(long userId, int type,
+		OrderByComparator<AMFEvent> orderByComparator) {
+		return getPersistence().fetchByU_T_Last(userId, type, orderByComparator);
+	}
+
+	/**
+	* Returns the amf events before and after the current amf event in the ordered set where userId = &#63; and type = &#63;.
+	*
+	* @param amfEventId the primary key of the current amf event
+	* @param userId the user ID
+	* @param type the type
+	* @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	* @return the previous, current, and next amf event
+	* @throws NoSuchEventException if a amf event with the primary key could not be found
+	*/
+	public static AMFEvent[] findByU_T_PrevAndNext(long amfEventId,
+		long userId, int type, OrderByComparator<AMFEvent> orderByComparator)
+		throws com.liferay.amf.exception.NoSuchEventException {
+		return getPersistence()
+				   .findByU_T_PrevAndNext(amfEventId, userId, type,
+			orderByComparator);
+	}
+
+	/**
+	* Removes all the amf events where userId = &#63; and type = &#63; from the database.
+	*
+	* @param userId the user ID
+	* @param type the type
+	*/
+	public static void removeByU_T(long userId, int type) {
+		getPersistence().removeByU_T(userId, type);
+	}
+
+	/**
+	* Returns the number of amf events where userId = &#63; and type = &#63;.
+	*
+	* @param userId the user ID
+	* @param type the type
+	* @return the number of matching amf events
+	*/
+	public static int countByU_T(long userId, int type) {
+		return getPersistence().countByU_T(userId, type);
 	}
 
 	/**

@@ -14,7 +14,7 @@
 
 package com.liferay.amf.web.portlet;
 
-import com.liferay.amf.web.constants.AMFPortletKeys;
+import com.liferay.amf.constants.AMFPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCPortlet;
 
 import javax.portlet.Portlet;

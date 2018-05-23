@@ -18,12 +18,14 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.amf.model.AMFEvent;
 import com.liferay.amf.model.AMFEventModel;
+import com.liferay.amf.model.AMFEventSoap;
 
 import com.liferay.expando.kernel.model.ExpandoBridge;
 import com.liferay.expando.kernel.util.ExpandoBridgeFactoryUtil;
 
 import com.liferay.portal.kernel.bean.AutoEscapeBeanHandler;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.json.JSON;
 import com.liferay.portal.kernel.model.CacheModel;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.model.impl.BaseModelImpl;
@@ -38,7 +40,9 @@ import java.io.Serializable;
 
 import java.sql.Types;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -54,6 +58,7 @@ import java.util.Map;
  * @see AMFEventModel
  * @generated
  */
+@JSON(strict = true)
 @ProviderType
 public class AMFEventModelImpl extends BaseModelImpl<AMFEvent>
 	implements AMFEventModel {
@@ -99,7 +104,52 @@ public class AMFEventModelImpl extends BaseModelImpl<AMFEvent>
 				"value.object.column.bitmask.enabled.com.liferay.amf.model.AMFEvent"),
 			true);
 	public static final long TYPE_COLUMN_BITMASK = 1L;
-	public static final long CREATETIME_COLUMN_BITMASK = 2L;
+	public static final long USERID_COLUMN_BITMASK = 2L;
+	public static final long CREATETIME_COLUMN_BITMASK = 4L;
+
+	/**
+	 * Converts the soap model instance into a normal model instance.
+	 *
+	 * @param soapModel the soap model instance to convert
+	 * @return the normal model instance
+	 */
+	public static AMFEvent toModel(AMFEventSoap soapModel) {
+		if (soapModel == null) {
+			return null;
+		}
+
+		AMFEvent model = new AMFEventImpl();
+
+		model.setAmfEventId(soapModel.getAmfEventId());
+		model.setUserId(soapModel.getUserId());
+		model.setUserName(soapModel.getUserName());
+		model.setCreateTime(soapModel.getCreateTime());
+		model.setType(soapModel.getType());
+		model.setIpAddress(soapModel.getIpAddress());
+
+		return model;
+	}
+
+	/**
+	 * Converts the soap model instances into normal model instances.
+	 *
+	 * @param soapModels the soap model instances to convert
+	 * @return the normal model instances
+	 */
+	public static List<AMFEvent> toModels(AMFEventSoap[] soapModels) {
+		if (soapModels == null) {
+			return null;
+		}
+
+		List<AMFEvent> models = new ArrayList<AMFEvent>(soapModels.length);
+
+		for (AMFEventSoap soapModel : soapModels) {
+			models.add(toModel(soapModel));
+		}
+
+		return models;
+	}
+
 	public static final long LOCK_EXPIRATION_TIME = GetterUtil.getLong(com.liferay.amf.service.util.ServiceProps.get(
 				"lock.expiration.time.com.liferay.amf.model.AMFEvent"));
 
@@ -192,6 +242,7 @@ public class AMFEventModelImpl extends BaseModelImpl<AMFEvent>
 		}
 	}
 
+	@JSON
 	@Override
 	public long getAmfEventId() {
 		return _amfEventId;
@@ -202,6 +253,7 @@ public class AMFEventModelImpl extends BaseModelImpl<AMFEvent>
 		_amfEventId = amfEventId;
 	}
 
+	@JSON
 	@Override
 	public long getUserId() {
 		return _userId;
@@ -209,6 +261,14 @@ public class AMFEventModelImpl extends BaseModelImpl<AMFEvent>
 
 	@Override
 	public void setUserId(long userId) {
+		_columnBitmask |= USERID_COLUMN_BITMASK;
+
+		if (!_setOriginalUserId) {
+			_setOriginalUserId = true;
+
+			_originalUserId = _userId;
+		}
+
 		_userId = userId;
 	}
 
@@ -228,6 +288,11 @@ public class AMFEventModelImpl extends BaseModelImpl<AMFEvent>
 	public void setUserUuid(String userUuid) {
 	}
 
+	public long getOriginalUserId() {
+		return _originalUserId;
+	}
+
+	@JSON
 	@Override
 	public String getUserName() {
 		if (_userName == null) {
@@ -243,6 +308,7 @@ public class AMFEventModelImpl extends BaseModelImpl<AMFEvent>
 		_userName = userName;
 	}
 
+	@JSON
 	@Override
 	public long getCreateTime() {
 		return _createTime;
@@ -255,6 +321,7 @@ public class AMFEventModelImpl extends BaseModelImpl<AMFEvent>
 		_createTime = createTime;
 	}
 
+	@JSON
 	@Override
 	public int getType() {
 		return _type;
@@ -277,6 +344,7 @@ public class AMFEventModelImpl extends BaseModelImpl<AMFEvent>
 		return _originalType;
 	}
 
+	@JSON
 	@Override
 	public String getIpAddress() {
 		if (_ipAddress == null) {
@@ -399,6 +467,10 @@ public class AMFEventModelImpl extends BaseModelImpl<AMFEvent>
 	public void resetOriginalValues() {
 		AMFEventModelImpl amfEventModelImpl = this;
 
+		amfEventModelImpl._originalUserId = amfEventModelImpl._userId;
+
+		amfEventModelImpl._setOriginalUserId = false;
+
 		amfEventModelImpl._originalType = amfEventModelImpl._type;
 
 		amfEventModelImpl._setOriginalType = false;
@@ -502,6 +574,8 @@ public class AMFEventModelImpl extends BaseModelImpl<AMFEvent>
 		};
 	private long _amfEventId;
 	private long _userId;
+	private long _originalUserId;
+	private boolean _setOriginalUserId;
 	private String _userName;
 	private long _createTime;
 	private int _type;

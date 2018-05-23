@@ -60,12 +60,32 @@ public class AMFEventLocalServiceImpl extends AMFEventLocalServiceBaseImpl {
 	}
 
 	@Override
+	public List<AMFEvent> getAMFEvents(
+		long userId, int type, int start, int end) {
+
+		if (type == AMFEventConstants.TYPE_ANY) {
+			return amfEventPersistence.findByUserId(userId, start, end);
+		}
+
+		return amfEventPersistence.findByU_T(userId, type, start, end);
+	}
+
+	@Override
 	public int getAMFEventsCount(int type) {
 		if (type == AMFEventConstants.TYPE_ANY) {
 			return amfEventPersistence.countAll();
 		}
 
 		return amfEventPersistence.countByType(type);
+	}
+
+	@Override
+	public int getAMFEventsCount(long userId, int type) {
+		if (type == AMFEventConstants.TYPE_ANY) {
+			return amfEventPersistence.countByUserId(userId);
+		}
+
+		return amfEventPersistence.countByU_T(userId, type);
 	}
 
 }

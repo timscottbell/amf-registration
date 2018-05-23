@@ -22,9 +22,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * This class is used by SOAP remote services.
+ * This class is used by SOAP remote services, specifically {@link com.liferay.amf.service.http.AMFEventServiceSoap}.
  *
  * @author Timothy Bell
+ * @see com.liferay.amf.service.http.AMFEventServiceSoap
  * @generated
  */
 @ProviderType

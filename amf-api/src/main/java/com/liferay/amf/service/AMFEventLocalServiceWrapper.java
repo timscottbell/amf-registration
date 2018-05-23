@@ -165,6 +165,11 @@ public class AMFEventLocalServiceWrapper implements AMFEventLocalService,
 		return _amfEventLocalService.getAMFEventsCount(type);
 	}
 
+	@Override
+	public int getAMFEventsCount(long userId, int type) {
+		return _amfEventLocalService.getAMFEventsCount(userId, type);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -249,6 +254,12 @@ public class AMFEventLocalServiceWrapper implements AMFEventLocalService,
 	public java.util.List<com.liferay.amf.model.AMFEvent> getAMFEvents(
 		int type, int start, int end) {
 		return _amfEventLocalService.getAMFEvents(type, start, end);
+	}
+
+	@Override
+	public java.util.List<com.liferay.amf.model.AMFEvent> getAMFEvents(
+		long userId, int type, int start, int end) {
+		return _amfEventLocalService.getAMFEvents(userId, type, start, end);
 	}
 
 	/**

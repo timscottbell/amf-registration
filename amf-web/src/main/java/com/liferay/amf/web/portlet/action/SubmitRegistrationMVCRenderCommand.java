@@ -14,7 +14,7 @@
 
 package com.liferay.amf.web.portlet.action;
 
-import com.liferay.amf.web.constants.AMFPortletKeys;
+import com.liferay.amf.constants.AMFPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 
 import javax.portlet.RenderRequest;

@@ -21,8 +21,11 @@ import com.liferay.amf.exception.UserBirthdayException;
 import com.liferay.amf.exception.UserPasswordException;
 import com.liferay.amf.exception.UserUsernameException;
 import com.liferay.amf.model.AMFEvent;
-import com.liferay.amf.service.AMFEventLocalServiceUtil;
+import com.liferay.amf.service.AMFEventServiceUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
 import com.liferay.portal.kernel.util.StringPool;
@@ -113,21 +116,27 @@ public class AMFDisplayContext {
 		return renderResponse;
 	}
 
-	public SearchContainer getSearchContainer(PageContext pageContext) {
+	public SearchContainer getSearchContainer(PageContext pageContext)
+		throws PortalException {
+
 		SearchContainer searchContainer = new SearchContainer(
 			renderRequest, renderResponse.createRenderURL(), null,
 			"no-events-were-found");
 
 		searchContainer.setDelta(20);
 
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			renderRequest);
+
 		int type = (int)pageContext.getAttribute("type");
 
-		List<AMFEvent> amfEvents = AMFEventLocalServiceUtil.getAMFEvents(
-			type, searchContainer.getStart(), searchContainer.getEnd());
+		List<AMFEvent> amfEvents = AMFEventServiceUtil.getAMFEvents(
+			serviceContext, type, searchContainer.getStart(),
+			searchContainer.getEnd());
 
 		searchContainer.setResults(amfEvents);
 
-		int total = AMFEventLocalServiceUtil.getAMFEventsCount(type);
+		int total = AMFEventServiceUtil.getAMFEventsCount(serviceContext, type);
 
 		searchContainer.setTotal(total);
 

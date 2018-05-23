@@ -2,5 +2,6 @@
 
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" default-destroy-method="destroy" default-init-method="afterPropertiesSet" xsi:schemaLocation=" http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<bean class="com.liferay.amf.service.impl.AMFEventLocalServiceImpl" id="com.liferay.amf.service.AMFEventLocalService" />
+	<bean class="com.liferay.amf.service.impl.AMFEventServiceImpl" id="com.liferay.amf.service.AMFEventService" />
 	<bean class="com.liferay.amf.service.persistence.impl.AMFEventPersistenceImpl" id="com.liferay.amf.service.persistence.AMFEventPersistence" parent="basePersistence" />
 </beans>

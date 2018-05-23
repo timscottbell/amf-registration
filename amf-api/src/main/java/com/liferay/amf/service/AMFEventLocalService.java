@@ -153,6 +153,9 @@ public interface AMFEventLocalService extends BaseLocalService,
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public int getAMFEventsCount(int type);
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public int getAMFEventsCount(long userId, int type);
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -215,6 +218,9 @@ public interface AMFEventLocalService extends BaseLocalService,
 
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public List<AMFEvent> getAMFEvents(int type, int start, int end);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<AMFEvent> getAMFEvents(long userId, int type, int start, int end);
 
 	/**
 	* Returns the number of rows matching the dynamic query.
