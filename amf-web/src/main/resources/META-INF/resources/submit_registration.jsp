@@ -29,30 +29,15 @@
 			<liferay-ui:error exception="<%= AddressZipException.class %>" message="the-zip-code-must-be-five-digits-long" />
 
 			<liferay-ui:error exception="<%= AlphanumericException.class %>">
-
-				<%
-				AlphanumericException ae = (AlphanumericException)errorException;
-				%>
-
-				<liferay-ui:message key='<%= "the-field-" + ae.fieldName + "-must-be-alphanumeric" %>' />
+				<liferay-ui:message key="<%= amfDisplayContext.getErrorMessageKey(errorException) %>" />
 			</liferay-ui:error>
 
 			<liferay-ui:error exception="<%= MaxCharacterException.class %>">
-
-				<%
-				MaxCharacterException mce = (MaxCharacterException)errorException;
-				%>
-
-				<liferay-ui:message arguments="<%= mce.maxCharacters %>" key='<%= "the-field-" + mce.fieldName + "-cannot-contain-more-than-x-characters" %>' />
+				<liferay-ui:message arguments="<%= amfDisplayContext.getErrorMessageSingleArgument(errorException) %>" key="<%= amfDisplayContext.getErrorMessageKey(errorException) %>" />
 			</liferay-ui:error>
 
 			<liferay-ui:error exception="<%= PhoneException.class %>">
-
-				<%
-				PhoneException pe = (PhoneException)errorException;
-				%>
-
-				<liferay-ui:message key='<%= "the-" + pe.type + "-number-must-be-ten-digits-long" %>' />
+				<liferay-ui:message key="<%= amfDisplayContext.getErrorMessageKey(errorException) %>" />
 			</liferay-ui:error>
 
 			<liferay-ui:error exception="<%= RegionCodeException.class %>" message="you-must-use-liferays-state-code" />
@@ -61,35 +46,20 @@
 			<liferay-ui:error exception="<%= TermsOfUseException.class %>" message="you-must-accept-the-terms-of-use" />
 
 			<liferay-ui:error exception="<%= UserBirthdayException.class %>">
-
-				<%
-				UserBirthdayException ube = (UserBirthdayException)errorException;
-				%>
-
-				<liferay-ui:message arguments="<%= ube.age %>" key="you-must-be-x-years-old-to-register" />
+				<liferay-ui:message arguments="<%= amfDisplayContext.getErrorMessageSingleArgument(errorException) %>" key="you-must-be-x-years-old-to-register" />
 			</liferay-ui:error>
 
 			<liferay-ui:error exception="<%= UserEmailAddressException.class %>" message="the-field-email-address-must-be-alphanumeric" />
 
 			<liferay-ui:error exception="<%= UserPasswordException.MustBeLonger.class %>">
-
-				<%
-				UserPasswordException.MustBeLonger upe = (UserPasswordException.MustBeLonger)errorException;
-				%>
-
-				<liferay-ui:message arguments="<%= upe.length %>" key="the-password-must-be-longer-than-x-characters" />
+				<liferay-ui:message arguments="<%= amfDisplayContext.getErrorMessageSingleArgument(errorException) %>" key="the-password-must-be-longer-than-x-characters" />
 			</liferay-ui:error>
 
 			<liferay-ui:error exception="<%= UserPasswordException.MustComplyWithRegex.class %>" message="the-password-must-contain-one-uppercase-letter-one-number-and-one-special-character" />
 			<liferay-ui:error exception="<%= UserPasswordException.MustMatch.class %>" message="the-passwords-must-match" />
 
 			<liferay-ui:error exception="<%= UserUsernameException.MustBeCertainLength.class %>">
-
-				<%
-				UserUsernameException.MustBeCertainLength uue = (UserUsernameException.MustBeCertainLength)errorException;
-				%>
-
-				<liferay-ui:message arguments="<%= new String[] {String.valueOf(uue.minLength), String.valueOf(uue.maxLength)} %>" key="the-username-must-be-between-x-and-x-characters-long" />
+				<liferay-ui:message arguments="<%= amfDisplayContext.getErrorMessageMultipleArguments(errorException) %>" key="the-username-must-be-between-x-and-x-characters-long" />
 			</liferay-ui:error>
 
 			<liferay-ui:error exception="<%= UserUsernameException.MustBeUnique.class %>" message="the-username-must-be-unique" />
@@ -146,17 +116,9 @@
 
 			<aui:fieldset label="misc">
 				<aui:select label="security-question" name="security_question" required="true" value='<%= ParamUtil.getString(renderRequest, "security_question") %>'>
-
-					<%
-					for (String securityQuestion : AMFRegistrationConstants.SECURITY_QUESTIONS) {
-					%>
-
-						<aui:option label="<%= securityQuestion %>" />
-
-					<%
-					}
-					%>
-
+					<c:forEach items="<%= AMFRegistrationConstants.SECURITY_QUESTIONS %>" var="securityQuestion">
+						<aui:option label="${securityQuestion}" />
+					</c:forEach>
 				</aui:select>
 
 				<aui:input label="security-answer" name="security_answer" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "security_answer") %>' />

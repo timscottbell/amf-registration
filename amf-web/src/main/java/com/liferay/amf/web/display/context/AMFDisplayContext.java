@@ -14,11 +14,18 @@
 
 package com.liferay.amf.web.display.context;
 
+import com.liferay.amf.exception.AlphanumericException;
+import com.liferay.amf.exception.MaxCharacterException;
+import com.liferay.amf.exception.PhoneException;
+import com.liferay.amf.exception.UserBirthdayException;
+import com.liferay.amf.exception.UserPasswordException;
+import com.liferay.amf.exception.UserUsernameException;
 import com.liferay.amf.model.AMFEvent;
 import com.liferay.amf.service.AMFEventLocalServiceUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.StringPool;
 
 import java.text.DateFormat;
 
@@ -34,6 +41,61 @@ import javax.servlet.jsp.PageContext;
  * @author Timothy Bell
  */
 public class AMFDisplayContext {
+
+	public String getErrorMessageKey(Object object) {
+		if (object instanceof AlphanumericException) {
+			AlphanumericException ae = (AlphanumericException)object;
+
+			return "the-field-" + ae.fieldName + "-must-be-alphanumeric";
+		}
+		else if (object instanceof MaxCharacterException) {
+			MaxCharacterException mce = (MaxCharacterException)object;
+
+			return "the-field-" + mce.fieldName +
+				"-cannot-contain-more-than-x-characters";
+		}
+		else if (object instanceof PhoneException) {
+			PhoneException pe = (PhoneException)object;
+
+			return "the-" + pe.type + "-number-must-be-ten-digits-long";
+		}
+
+		return StringPool.BLANK;
+	}
+
+	public String[] getErrorMessageMultipleArguments(Object object) {
+		if (object instanceof UserUsernameException.MustBeCertainLength) {
+			UserUsernameException.MustBeCertainLength uue =
+				(UserUsernameException.MustBeCertainLength)object;
+
+			return new String[] {
+				String.valueOf(uue.minLength), String.valueOf(uue.maxLength)
+			};
+		}
+
+		return new String[0];
+	}
+
+	public String getErrorMessageSingleArgument(Object object) {
+		if (object instanceof MaxCharacterException) {
+			MaxCharacterException mce = (MaxCharacterException)object;
+
+			return String.valueOf(mce.maxCharacters);
+		}
+		else if (object instanceof UserBirthdayException) {
+			UserBirthdayException ube = (UserBirthdayException)object;
+
+			return String.valueOf(ube.age);
+		}
+		else if (object instanceof UserPasswordException.MustBeLonger) {
+			UserPasswordException.MustBeLonger upe =
+				(UserPasswordException.MustBeLonger)object;
+
+			return String.valueOf(upe.length);
+		}
+
+		return StringPool.BLANK;
+	}
 
 	public String getFormattedDate(long time) {
 		DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat(
