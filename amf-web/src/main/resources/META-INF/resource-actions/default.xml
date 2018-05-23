@@ -5,6 +5,7 @@
 		<portlet-name>com_liferay_amf_web_portlet_AMFEventMonitoringPortlet</portlet-name>
 		<permissions>
 			<supports>
+				<action-key>ADD_TO_PAGE</action-key>
 				<action-key>CONFIGURATION</action-key>
 				<action-key>VIEW</action-key>
 				<action-key>VIEW_EVENTS_OTHERS</action-key>
@@ -12,7 +13,9 @@
 			<site-member-defaults>
 				<action-key>VIEW</action-key>
 			</site-member-defaults>
-			<guest-defaults />
+			<guest-defaults>
+				<action-key>VIEW</action-key>
+			</guest-defaults>
 			<guest-unsupported />
 		</permissions>
 	</portlet-resource>
