@@ -41,6 +41,7 @@
 			/>
 
 			<liferay-ui:search-container-column-text
+				translate="<%= true %>"
 				value="<%= AMFEventConstants.getTypeLabel(amfEvent.getType()) %>"
 			/>
 		</liferay-ui:search-container-row>
