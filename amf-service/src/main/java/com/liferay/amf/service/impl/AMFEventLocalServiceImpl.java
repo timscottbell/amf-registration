@@ -14,6 +14,7 @@
 
 package com.liferay.amf.service.impl;
 
+import com.liferay.amf.constants.AMFEventConstants;
 import com.liferay.amf.model.AMFEvent;
 import com.liferay.amf.service.base.AMFEventLocalServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -51,11 +52,19 @@ public class AMFEventLocalServiceImpl extends AMFEventLocalServiceBaseImpl {
 
 	@Override
 	public List<AMFEvent> getAMFEvents(int type, int start, int end) {
+		if (type == AMFEventConstants.TYPE_ANY) {
+			return amfEventPersistence.findAll(start, end);
+		}
+
 		return amfEventPersistence.findByType(type, start, end);
 	}
 
 	@Override
 	public int getAMFEventsCount(int type) {
+		if (type == AMFEventConstants.TYPE_ANY) {
+			return amfEventPersistence.countAll();
+		}
+
 		return amfEventPersistence.countByType(type);
 	}
 

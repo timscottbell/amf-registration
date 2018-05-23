@@ -16,56 +16,22 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-ui:tabs
-	names="all,registration,login"
-	param="type"
-	refresh="<%= false %>"
-	tabsValues="<%= StringUtil.merge(AMFEventConstants.TYPES_DISPLAY) %>"
->
-	<%--<%--%>
-	<%--PortletURL iteratorURL = renderResponse.createRenderURL();--%>
+<liferay-ui:tabs names="all,registration,login" refresh="<%= false %>">
+	<liferay-ui:section>
+		<c:set value="<%= AMFEventConstants.TYPE_ANY %>" var="type" />
 
-	<%--iteratorURL.setParameter("mvcRenderCommandName", "/monitor_events");--%>
+		<%@ include file="/search_container.jspf" %>
+	</liferay-ui:section>
 
-	<%--int type = ParamUtil.getInteger(request, "type", AMFEventConstants.TYPE_ANY);--%>
+	<liferay-ui:section>
+		<c:set value="<%= AMFEventConstants.TYPE_REGISTER %>" var="type" />
 
-	<%--iteratorURL.setParameter("type", String.valueOf(type));--%>
-	<%--%>--%>
+		<%@ include file="/search_container.jspf" %>
+	</liferay-ui:section>
 
-	<liferay-ui:search-container
-		delta="<%= 20 %>"
-		emptyResultsMessage="no-events-were-found"
-		total="<%= AMFEventLocalServiceUtil.getAMFEventsCount(1) %>"
-	>
-		<liferay-ui:search-container-results>
+	<liferay-ui:section>
+		<c:set value="<%= AMFEventConstants.TYPE_LOGIN %>" var="type" />
 
-			<%
-			List<AMFEvent> amfEvents = AMFEventLocalServiceUtil.getAMFEvents(1, searchContainer.getStart(), searchContainer.getEnd());
-
-			searchContainer.setResults(amfEvents);
-			%>
-
-			<liferay-ui:search-container-row
-				className="com.liferay.amf.model.AMFEvent"
-				escapedModel="<%= true %>"
-				keyProperty="amfEventId"
-				modelVar="amfEvent"
-			>
-
-				<%
-				DateFormat dateFormat = DateFormatFactoryUtil.getSimpleDateFormat("yyyy-MM-dd HH:mm:ss", themeDisplay.getLocale(), themeDisplay.getTimeZone());
-
-				String formattedDate = dateFormat.format(new Date(amfEvent.getCreateTime()));
-				%>
-
-				<liferay-ui:search-container-column-text value="<%= formattedDate %>" />
-				<liferay-ui:search-container-column-text value="<%= amfEvent.getUserName() %>" />
-				<liferay-ui:search-container-column-text value="<%= StringPool.OPEN_PARENTHESIS + amfEvent.getUserId() + StringPool.CLOSE_PARENTHESIS %>" />
-				<liferay-ui:search-container-column-text value="<%= amfEvent.getIpAddress() %>" />
-				<liferay-ui:search-container-column-text value="<%= AMFEventConstants.getTypeLabel(amfEvent.getType()) %>" />
-			</liferay-ui:search-container-row>
-
-			<liferay-ui:search-iterator />
-		</liferay-ui:search-container-results>
-	</liferay-ui:search-container>
+		<%@ include file="/search_container.jspf" %>
+	</liferay-ui:section>
 </liferay-ui:tabs>

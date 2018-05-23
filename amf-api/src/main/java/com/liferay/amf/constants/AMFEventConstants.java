@@ -40,4 +40,5 @@ public class AMFEventConstants {
 
 		return StringPool.BLANK;
 	}
+
 }

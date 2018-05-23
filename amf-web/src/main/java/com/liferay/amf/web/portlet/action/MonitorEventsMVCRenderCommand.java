@@ -14,14 +14,9 @@
 
 package com.liferay.amf.web.portlet.action;
 
-import com.liferay.amf.constants.AMFEventConstants;
-import com.liferay.amf.model.AMFEvent;
 import com.liferay.amf.service.AMFEventLocalService;
 import com.liferay.amf.web.constants.AMFPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
-import com.liferay.portal.kernel.util.ParamUtil;
-
-import java.util.List;
 
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -43,28 +38,6 @@ public class MonitorEventsMVCRenderCommand implements MVCRenderCommand {
 	@Override
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
-
-		int type = ParamUtil.getInteger(
-			renderRequest, "type", AMFEventConstants.TYPE_ANY);
-		int start = ParamUtil.getInteger(renderRequest, "start");
-		int end = ParamUtil.getInteger(renderRequest, "end");
-
-		List<AMFEvent> amfEvents = null;
-		int amfEventsCount = 0;
-
-		if (type != AMFEventConstants.TYPE_ANY) {
-			amfEvents = _amfEventLocalService.getAMFEvents(type, start, end);
-
-			amfEventsCount = _amfEventLocalService.getAMFEventsCount(type);
-		}
-		else {
-			amfEvents = _amfEventLocalService.getAMFEvents(start, end);
-
-			amfEventsCount = _amfEventLocalService.getAMFEventsCount();
-		}
-
-		renderRequest.setAttribute("results", amfEvents);
-		renderRequest.setAttribute("total", amfEventsCount);
 
 		return "/monitor_events.jsp";
 	}
