@@ -15,8 +15,10 @@
 package com.liferay.amf.web.portlet.action;
 
 import com.liferay.amf.constants.AMFPortletKeys;
+import com.liferay.portal.kernel.exception.AddressZipException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
 import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.Validator;
 
 import javax.portlet.ActionRequest;
 import javax.portlet.ActionResponse;
@@ -40,11 +42,13 @@ public class SearchMVCActionCommand implements MVCActionCommand {
 			ActionRequest actionRequest, ActionResponse actionResponse)
 		throws PortletException {
 
-		int zip = ParamUtil.getInteger(actionRequest, "zip");
+		String zip = ParamUtil.getString(actionRequest, "zip");
 
-		// Fetch by primary and zip and join on User
+		if (!Validator.isDigit(zip) || (zip.length() != 5)) {
+			throw new PortletException(new AddressZipException());
+		}
 
-		//Communincate to other portlet
+		actionResponse.setRenderParameter("zip", zip);
 
 		return true;
 	}

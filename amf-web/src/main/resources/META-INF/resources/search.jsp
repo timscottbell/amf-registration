@@ -21,6 +21,8 @@
 </portlet:actionURL>
 
 <aui:form action="<%= searchURL %>" method="post" name="fm">
+	<liferay-ui:error exception="<%= AddressZipException.class %>" message="the-zip-code-must-be-five-digits-long" />
+
 	<aui:input label="enter-us-zip" name="zip" required="true" type="number" />
 
 	<aui:button-row>
