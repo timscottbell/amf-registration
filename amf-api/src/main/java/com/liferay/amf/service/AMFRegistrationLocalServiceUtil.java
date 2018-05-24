@@ -41,6 +41,26 @@ public class AMFRegistrationLocalServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.amf.service.impl.AMFRegistrationLocalServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static com.liferay.portal.kernel.model.User registerUser(
+		long creatorUserId, long companyId, java.lang.String firstName,
+		java.lang.String lastName, java.lang.String emailAddress,
+		java.util.Locale locale, java.lang.String username, boolean male,
+		int birthdayMonth, int birthdayDay, int birthdayYear,
+		java.lang.String password1, java.lang.String password2,
+		java.lang.String homePhone, java.lang.String mobilePhone,
+		java.lang.String address1, java.lang.String address2,
+		java.lang.String city, java.lang.String state, java.lang.String zip,
+		java.lang.String securityQuestion, java.lang.String securityAnswer,
+		boolean acceptedTOU,
+		com.liferay.portal.kernel.service.ServiceContext serviceContext)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService()
+				   .registerUser(creatorUserId, companyId, firstName, lastName,
+			emailAddress, locale, username, male, birthdayMonth, birthdayDay,
+			birthdayYear, password1, password2, homePhone, mobilePhone,
+			address1, address2, city, state, zip, securityQuestion,
+			securityAnswer, acceptedTOU, serviceContext);
+	}
 
 	/**
 	* Returns the OSGi service identifier.

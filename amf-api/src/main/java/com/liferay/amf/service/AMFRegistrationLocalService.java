@@ -18,9 +18,13 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.SystemException;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.BaseLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.transaction.Isolation;
 import com.liferay.portal.kernel.transaction.Transactional;
+
+import java.util.Locale;
 
 /**
  * Provides the local service interface for AMFRegistration. Methods of this
@@ -43,6 +47,18 @@ public interface AMFRegistrationLocalService extends BaseLocalService {
 	 *
 	 * Never modify or reference this interface directly. Always use {@link AMFRegistrationLocalServiceUtil} to access the amf registration local service. Add custom service methods to {@link com.liferay.amf.service.impl.AMFRegistrationLocalServiceImpl} and rerun ServiceBuilder to automatically copy the method declarations to this interface.
 	 */
+	public User registerUser(long creatorUserId, long companyId,
+		java.lang.String firstName, java.lang.String lastName,
+		java.lang.String emailAddress, Locale locale,
+		java.lang.String username, boolean male, int birthdayMonth,
+		int birthdayDay, int birthdayYear, java.lang.String password1,
+		java.lang.String password2, java.lang.String homePhone,
+		java.lang.String mobilePhone, java.lang.String address1,
+		java.lang.String address2, java.lang.String city,
+		java.lang.String state, java.lang.String zip,
+		java.lang.String securityQuestion, java.lang.String securityAnswer,
+		boolean acceptedTOU, ServiceContext serviceContext)
+		throws PortalException;
 
 	/**
 	* Returns the OSGi service identifier.
