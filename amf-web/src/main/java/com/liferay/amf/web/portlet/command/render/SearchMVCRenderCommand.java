@@ -12,17 +12,13 @@
  * details.
  */
 
-package com.liferay.amf.web.portlet.action;
+package com.liferay.amf.web.portlet.command.render;
 
 import com.liferay.amf.constants.AMFPortletKeys;
-import com.liferay.portal.kernel.exception.AddressZipException;
-import com.liferay.portal.kernel.portlet.bridges.mvc.MVCActionCommand;
-import com.liferay.portal.kernel.util.ParamUtil;
-import com.liferay.portal.kernel.util.Validator;
+import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
 
-import javax.portlet.ActionRequest;
-import javax.portlet.ActionResponse;
-import javax.portlet.PortletException;
+import javax.portlet.RenderRequest;
+import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
 
@@ -35,22 +31,13 @@ import org.osgi.service.component.annotations.Component;
 		"mvc.command.name=/search"
 	}
 )
-public class SearchMVCActionCommand implements MVCActionCommand {
+public class SearchMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
-	public boolean processAction(
-			ActionRequest actionRequest, ActionResponse actionResponse)
-		throws PortletException {
+	public String render(
+		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		String zip = ParamUtil.getString(actionRequest, "zip");
-
-		if (!Validator.isDigit(zip) || (zip.length() != 5)) {
-			throw new PortletException(new AddressZipException());
-		}
-
-		actionResponse.setRenderParameter("zip", zip);
-
-		return true;
+		return "/search.jsp";
 	}
 
 }

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.amf.web.portlet.action;
+package com.liferay.amf.web.portlet.command.render;
 
 import com.liferay.amf.constants.AMFPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
@@ -27,17 +27,17 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	property = {
-		"javax.portlet.name=" + AMFPortletKeys.AMF_REGISTRATION,
-		"mvc.command.name=/submit_registration"
+		"javax.portlet.name=" + AMFPortletKeys.AMF_SEARCH_RESULTS,
+		"mvc.command.name=/view_search_results"
 	}
 )
-public class SubmitRegistrationMVCRenderCommand implements MVCRenderCommand {
+public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		return "/submit_registration.jsp";
+		return "/view_search_results.jsp";
 	}
 
 }

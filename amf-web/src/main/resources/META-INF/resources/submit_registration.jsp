@@ -135,7 +135,7 @@
 
 <aui:script>
 	function <portlet:namespace />viewTermsOfUse() {
-		var termsOfUseURL = "<liferay-portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcRenderCommandName" value="/terms_of_use" /></liferay-portlet:renderURL>";
+		var termsOfUseURL = "<liferay-portlet:renderURL windowState="<%= LiferayWindowState.POP_UP.toString() %>"><portlet:param name="mvcRenderCommandName" value="/view_terms_of_use" /></liferay-portlet:renderURL>";
 
 		Liferay.Util.openWindow(
 			{

@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.amf.web.portlet.action;
+package com.liferay.amf.web.portlet.command.action;
 
 import com.liferay.amf.constants.AMFPortletKeys;
 import com.liferay.amf.exception.AlphanumericException;

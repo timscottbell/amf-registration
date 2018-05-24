@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.amf.web.portlet.action;
+package com.liferay.amf.web.portlet.command.render;
 
 import com.liferay.amf.constants.AMFPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
@@ -27,17 +27,17 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	property = {
-		"javax.portlet.name=" + AMFPortletKeys.AMF_EVENT_MONITOR,
-		"mvc.command.name=/monitor_events"
+		"javax.portlet.name=" + AMFPortletKeys.AMF_REGISTRATION,
+		"mvc.command.name=/submit_registration"
 	}
 )
-public class MonitorEventsMVCRenderCommand implements MVCRenderCommand {
+public class SubmitRegistrationMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		return "/monitor_events.jsp";
+		return "/submit_registration.jsp";
 	}
 
 }

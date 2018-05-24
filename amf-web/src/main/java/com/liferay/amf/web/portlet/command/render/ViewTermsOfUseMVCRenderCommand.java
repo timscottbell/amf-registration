@@ -12,7 +12,7 @@
  * details.
  */
 
-package com.liferay.amf.web.portlet.action;
+package com.liferay.amf.web.portlet.command.render;
 
 import com.liferay.amf.constants.AMFPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
@@ -28,16 +28,16 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	property = {
 		"javax.portlet.name=" + AMFPortletKeys.AMF_REGISTRATION,
-		"mvc.command.name=/terms_of_use"
+		"mvc.command.name=/view_terms_of_use"
 	}
 )
-public class TermsOfUseMVCRenderCommand implements MVCRenderCommand {
+public class ViewTermsOfUseMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		return "/terms_of_use.jsp";
+		return "/view_terms_of_use.jsp";
 	}
 
 }
