@@ -25,4 +25,10 @@ public class AMFPortletKeys {
 	public static final String AMF_REGISTRATION =
 		"com_liferay_amf_web_portlet_AMFRegistrationPortlet";
 
+	public static final String AMF_SEARCH =
+		"com_liferay_amf_web_portlet_AMFSearchPortlet";
+
+	public static final String AMF_SEARCH_RESULTS =
+		"com_liferay_amf_web_portlet_AMFSearchResultsPortlet";
+
 }
