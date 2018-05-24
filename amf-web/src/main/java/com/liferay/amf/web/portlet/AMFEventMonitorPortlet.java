@@ -28,10 +28,10 @@ import org.osgi.service.component.annotations.Component;
 	immediate = true,
 	property = {
 		"com.liferay.portlet.display-category=category.tools",
-		"javax.portlet.display-name=AMF Event Monitoring",
+		"javax.portlet.display-name=AMF Event Monitor",
 		"javax.portlet.init-param.template-path=/",
 		"javax.portlet.init-param.view-template=/monitor_events.jsp",
-		"javax.portlet.name=" + AMFPortletKeys.AMF_EVENT_MONITORING,
+		"javax.portlet.name=" + AMFPortletKeys.AMF_EVENT_MONITOR,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user"
 	},

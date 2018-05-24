@@ -29,7 +29,7 @@ import org.osgi.service.component.annotations.Reference;
  */
 @Component(
 	property = {
-		"javax.portlet.name=" + AMFPortletKeys.AMF_EVENT_MONITORING,
+		"javax.portlet.name=" + AMFPortletKeys.AMF_EVENT_MONITOR,
 		"mvc.command.name=/monitor_events"
 	}
 )

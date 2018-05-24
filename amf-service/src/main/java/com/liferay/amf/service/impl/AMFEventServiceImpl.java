@@ -36,7 +36,7 @@ public class AMFEventServiceImpl extends AMFEventServiceBaseImpl {
 
 		if (AMFPermission.containsPortletPermission(
 				getPermissionChecker(), serviceContext.getScopeGroupId(),
-				AMFPortletKeys.AMF_EVENT_MONITORING,
+				AMFPortletKeys.AMF_EVENT_MONITOR,
 				AMFActionKeys.VIEW_EVENTS_OTHERS)) {
 
 			return amfEventLocalService.getAMFEvents(type, start, end);
@@ -52,7 +52,7 @@ public class AMFEventServiceImpl extends AMFEventServiceBaseImpl {
 
 		if (AMFPermission.containsPortletPermission(
 				getPermissionChecker(), serviceContext.getScopeGroupId(),
-				AMFPortletKeys.AMF_EVENT_MONITORING,
+				AMFPortletKeys.AMF_EVENT_MONITOR,
 				AMFActionKeys.VIEW_EVENTS_OTHERS)) {
 
 			return amfEventLocalService.getAMFEventsCount(type);
