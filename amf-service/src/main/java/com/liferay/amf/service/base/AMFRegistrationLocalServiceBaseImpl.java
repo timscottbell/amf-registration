@@ -18,7 +18,6 @@ import aQute.bnd.annotation.ProviderType;
 
 import com.liferay.amf.service.AMFRegistrationLocalService;
 import com.liferay.amf.service.persistence.AMFEventPersistence;
-import com.liferay.amf.service.persistence.AMFRegistrationFinder;
 
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -115,25 +114,6 @@ public abstract class AMFRegistrationLocalServiceBaseImpl
 	public void setAMFRegistrationLocalService(
 		AMFRegistrationLocalService amfRegistrationLocalService) {
 		this.amfRegistrationLocalService = amfRegistrationLocalService;
-	}
-
-	/**
-	 * Returns the amf registration finder.
-	 *
-	 * @return the amf registration finder
-	 */
-	public AMFRegistrationFinder getAMFRegistrationFinder() {
-		return amfRegistrationFinder;
-	}
-
-	/**
-	 * Sets the amf registration finder.
-	 *
-	 * @param amfRegistrationFinder the amf registration finder
-	 */
-	public void setAMFRegistrationFinder(
-		AMFRegistrationFinder amfRegistrationFinder) {
-		this.amfRegistrationFinder = amfRegistrationFinder;
 	}
 
 	/**
@@ -406,8 +386,6 @@ public abstract class AMFRegistrationLocalServiceBaseImpl
 	protected AMFEventPersistence amfEventPersistence;
 	@BeanReference(type = AMFRegistrationLocalService.class)
 	protected AMFRegistrationLocalService amfRegistrationLocalService;
-	@BeanReference(type = AMFRegistrationFinder.class)
-	protected AMFRegistrationFinder amfRegistrationFinder;
 	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
 	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
 	@ServiceReference(type = com.liferay.portal.kernel.service.AddressLocalService.class)

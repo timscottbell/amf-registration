@@ -71,11 +71,6 @@ public class AMFRegistrationLocalServiceUtil {
 		return getService().getOSGiServiceIdentifier();
 	}
 
-	public static java.util.List<com.liferay.portal.kernel.model.User> getRegisteredUsers(
-		int zip, int start, int end) {
-		return getService().getRegisteredUsers(zip, start, end);
-	}
-
 	public static AMFRegistrationLocalService getService() {
 		return _serviceTracker.getService();
 	}

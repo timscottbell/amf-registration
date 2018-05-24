@@ -66,12 +66,6 @@ public class AMFRegistrationLocalServiceWrapper
 	}
 
 	@Override
-	public java.util.List<com.liferay.portal.kernel.model.User> getRegisteredUsers(
-		int zip, int start, int end) {
-		return _amfRegistrationLocalService.getRegisteredUsers(zip, start, end);
-	}
-
-	@Override
 	public AMFRegistrationLocalService getWrappedService() {
 		return _amfRegistrationLocalService;
 	}

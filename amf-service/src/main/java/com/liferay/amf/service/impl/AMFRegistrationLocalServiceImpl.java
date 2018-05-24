@@ -57,10 +57,6 @@ import java.util.regex.Pattern;
 public class AMFRegistrationLocalServiceImpl
 	extends AMFRegistrationLocalServiceBaseImpl {
 
-	public List<User> getRegisteredUsers(int zip, int start, int end) {
-		return amfRegistrationFinder.findByZ_P(zip, start, end);
-	}
-
 	@Override
 	public User registerUser(
 			long creatorUserId, long companyId, String firstName,

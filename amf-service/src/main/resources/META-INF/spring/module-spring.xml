@@ -5,5 +5,4 @@
 	<bean class="com.liferay.amf.service.impl.AMFEventServiceImpl" id="com.liferay.amf.service.AMFEventService" />
 	<bean class="com.liferay.amf.service.persistence.impl.AMFEventPersistenceImpl" id="com.liferay.amf.service.persistence.AMFEventPersistence" parent="basePersistence" />
 	<bean class="com.liferay.amf.service.impl.AMFRegistrationLocalServiceImpl" id="com.liferay.amf.service.AMFRegistrationLocalService" />
-	<bean class="com.liferay.amf.service.persistence.impl.AMFRegistrationFinderImpl" id="com.liferay.amf.service.persistence.AMFRegistrationFinder" parent="basePersistence" />
 </beans>
