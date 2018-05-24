@@ -42,7 +42,4 @@ public class MonitorEventsMVCRenderCommand implements MVCRenderCommand {
 		return "/monitor_events.jsp";
 	}
 
-	@Reference
-	private AMFEventLocalService _amfEventLocalService;
-
 }
