@@ -22,4 +22,6 @@ import aQute.bnd.annotation.ProviderType;
  */
 @ProviderType
 public interface AMFRegistrationFinder {
+	public java.util.List<com.liferay.portal.kernel.model.User> findByZ_P(
+		int zip, int begin, int end);
 }
