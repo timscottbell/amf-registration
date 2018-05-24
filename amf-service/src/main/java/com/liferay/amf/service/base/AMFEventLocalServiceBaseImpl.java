@@ -347,6 +347,25 @@ public abstract class AMFEventLocalServiceBaseImpl extends BaseLocalServiceImpl
 	}
 
 	/**
+	 * Returns the amf registration local service.
+	 *
+	 * @return the amf registration local service
+	 */
+	public com.liferay.amf.service.AMFRegistrationLocalService getAMFRegistrationLocalService() {
+		return amfRegistrationLocalService;
+	}
+
+	/**
+	 * Sets the amf registration local service.
+	 *
+	 * @param amfRegistrationLocalService the amf registration local service
+	 */
+	public void setAMFRegistrationLocalService(
+		com.liferay.amf.service.AMFRegistrationLocalService amfRegistrationLocalService) {
+		this.amfRegistrationLocalService = amfRegistrationLocalService;
+	}
+
+	/**
 	 * Returns the counter local service.
 	 *
 	 * @return the counter local service
@@ -515,6 +534,8 @@ public abstract class AMFEventLocalServiceBaseImpl extends BaseLocalServiceImpl
 	protected AMFEventLocalService amfEventLocalService;
 	@BeanReference(type = AMFEventPersistence.class)
 	protected AMFEventPersistence amfEventPersistence;
+	@BeanReference(type = com.liferay.amf.service.AMFRegistrationLocalService.class)
+	protected com.liferay.amf.service.AMFRegistrationLocalService amfRegistrationLocalService;
 	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
 	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
 	@ServiceReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)
