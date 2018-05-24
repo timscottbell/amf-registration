@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+
+<custom-sql>
+	<sql id="com.liferay.portal.kernel.model.User">
+		<![CDATA[
+			SELECT
+				DISTINCT User_.userId
+			FROM
+				User
+			INNER JOIN
+				Address ON
+					User_.userId = Address.userId
+			WHERE
+				(Address.zip = ?) AND
+				(Address.primary = true)
+		]]>
+	</sql>
+</custom-sql>
