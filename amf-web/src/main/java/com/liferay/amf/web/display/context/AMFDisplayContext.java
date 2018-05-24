@@ -24,10 +24,12 @@ import com.liferay.amf.model.AMFEvent;
 import com.liferay.amf.service.AMFEventServiceUtil;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
 import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.text.DateFormat;
@@ -106,6 +108,24 @@ public class AMFDisplayContext {
 			themeDisplay.getTimeZone());
 
 		return dateFormat.format(new Date(time));
+	}
+
+	public String getFormattedUserResult(User user) {
+		StringBundler sb = new StringBundler(7);
+
+		sb.append(user.getFirstName());
+		sb.append(StringPool.SPACE);
+
+		String lastName = user.getLastName();
+
+		sb.append(lastName.substring(0, 1));
+
+		sb.append(". (");
+		sb.append(user.getScreenName());
+		sb.append(") - ");
+		sb.append(user.getEmailAddress());
+
+		return sb.toString();
 	}
 
 	public RenderRequest getRenderRequest() {

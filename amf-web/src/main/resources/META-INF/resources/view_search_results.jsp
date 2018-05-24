@@ -16,9 +16,20 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-ui:search-container>
-	<liferay-ui:search-container-results>
-		<liferay-ui:search-container-row />
+<liferay-ui:search-container
+	searchContainer="${searchContainer}"
+>
+	<liferay-ui:search-container-results
+		className="com.liferay.portal.kernel.model.User"
+		escapedModel="<%= true %>"
+		keyProperty="userId"
+		modelVar="user"
+	>
+		<liferay-ui:search-container-row>
+			<liferay-ui:search-container-column-text
+				value="<%= amfDisplayContext.getFormattedUserResult(user) %>"
+			/>
+		</liferay-ui:search-container-row>
 
 		<liferay-ui:search-iterator />
 	</liferay-ui:search-container-results>
