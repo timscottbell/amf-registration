@@ -20,18 +20,18 @@
 	<liferay-ui:section>
 		<c:set value="<%= AMFEventConstants.TYPE_ANY %>" var="type" />
 
-		<%@ include file="/events.jspf" %>
+		<%@ include file="/event_results.jspf" %>
 	</liferay-ui:section>
 
 	<liferay-ui:section>
 		<c:set value="<%= AMFEventConstants.TYPE_REGISTER %>" var="type" />
 
-		<%@ include file="/events.jspf" %>
+		<%@ include file="/event_results.jspf" %>
 	</liferay-ui:section>
 
 	<liferay-ui:section>
 		<c:set value="<%= AMFEventConstants.TYPE_LOGIN %>" var="type" />
 
-		<%@ include file="/events.jspf" %>
+		<%@ include file="/event_results.jspf" %>
 	</liferay-ui:section>
 </liferay-ui:tabs>
