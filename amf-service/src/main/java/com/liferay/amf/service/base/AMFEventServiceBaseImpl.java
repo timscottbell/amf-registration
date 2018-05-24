@@ -17,6 +17,7 @@ package com.liferay.amf.service.base;
 import com.liferay.amf.model.AMFEvent;
 import com.liferay.amf.service.AMFEventService;
 import com.liferay.amf.service.persistence.AMFEventPersistence;
+import com.liferay.amf.service.persistence.AMFRegistrationFinder;
 
 import com.liferay.portal.kernel.bean.BeanReference;
 import com.liferay.portal.kernel.dao.db.DB;
@@ -125,6 +126,25 @@ public abstract class AMFEventServiceBaseImpl extends BaseServiceImpl
 	public void setAMFRegistrationLocalService(
 		com.liferay.amf.service.AMFRegistrationLocalService amfRegistrationLocalService) {
 		this.amfRegistrationLocalService = amfRegistrationLocalService;
+	}
+
+	/**
+	 * Returns the amf registration finder.
+	 *
+	 * @return the amf registration finder
+	 */
+	public AMFRegistrationFinder getAMFRegistrationFinder() {
+		return amfRegistrationFinder;
+	}
+
+	/**
+	 * Sets the amf registration finder.
+	 *
+	 * @param amfRegistrationFinder the amf registration finder
+	 */
+	public void setAMFRegistrationFinder(
+		AMFRegistrationFinder amfRegistrationFinder) {
+		this.amfRegistrationFinder = amfRegistrationFinder;
 	}
 
 	/**
@@ -334,6 +354,8 @@ public abstract class AMFEventServiceBaseImpl extends BaseServiceImpl
 	protected AMFEventPersistence amfEventPersistence;
 	@BeanReference(type = com.liferay.amf.service.AMFRegistrationLocalService.class)
 	protected com.liferay.amf.service.AMFRegistrationLocalService amfRegistrationLocalService;
+	@BeanReference(type = AMFRegistrationFinder.class)
+	protected AMFRegistrationFinder amfRegistrationFinder;
 	@ServiceReference(type = com.liferay.counter.kernel.service.CounterLocalService.class)
 	protected com.liferay.counter.kernel.service.CounterLocalService counterLocalService;
 	@ServiceReference(type = com.liferay.portal.kernel.service.ClassNameLocalService.class)
