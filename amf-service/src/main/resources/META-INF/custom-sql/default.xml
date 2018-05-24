@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 
 <custom-sql>
-	<sql id="com.liferay.portal.kernel.model.User">
+	<sql id="com.liferay.portal.kernel.model.User.findByZ_P">
 		<![CDATA[
 			SELECT
 				DISTINCT User_.userId
