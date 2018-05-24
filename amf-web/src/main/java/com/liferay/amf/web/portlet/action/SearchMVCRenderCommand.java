@@ -27,17 +27,17 @@ import org.osgi.service.component.annotations.Component;
  */
 @Component(
 	property = {
-		"javax.portlet.name=" + AMFPortletKeys.AMF_EVENT_MONITOR,
-		"mvc.command.name=/monitor_events"
+		"javax.portlet.name=" + AMFPortletKeys.AMF_SEARCH,
+		"mvc.command.name=/search"
 	}
 )
-public class MonitorEventsMVCRenderCommand implements MVCRenderCommand {
+public class SearchMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		return "/monitor_events.jsp";
+		return "/search.jsp";
 	}
 
 }
