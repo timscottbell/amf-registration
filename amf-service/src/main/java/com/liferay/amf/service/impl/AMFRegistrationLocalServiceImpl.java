@@ -35,10 +35,7 @@ import com.liferay.portal.kernel.model.ListType;
 import com.liferay.portal.kernel.model.ListTypeConstants;
 import com.liferay.portal.kernel.model.Region;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.service.AddressLocalService;
 import com.liferay.portal.kernel.service.CountryService;
-import com.liferay.portal.kernel.service.ListTypeLocalService;
-import com.liferay.portal.kernel.service.PhoneLocalService;
 import com.liferay.portal.kernel.service.RegionService;
 import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.util.ArrayUtil;
@@ -344,13 +341,18 @@ public class AMFRegistrationLocalServiceImpl
 				_USER_USERNAME_MIN_LENGTH, _USER_USERNAME_MAX_LENGTH);
 		}
 
-		User user = userLocalService.fetchUserByScreenName(
-			companyId, username);
+		User user = userLocalService.fetchUserByScreenName(companyId, username);
 
 		if (user != null) {
 			throw new UserUsernameException.MustBeUnique();
 		}
 	}
+
+	@ServiceReference(type = CountryService.class)
+	protected CountryService countryService;
+
+	@ServiceReference(type = RegionService.class)
+	protected RegionService regionService;
 
 	private static final String _LANGUAGE_KEY_ADDRESS_1 = "address-1";
 
