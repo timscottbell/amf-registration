@@ -14,7 +14,6 @@
 
 package com.liferay.amf.web.portlet.action;
 
-import com.liferay.amf.AMFRegistrationService;
 import com.liferay.amf.constants.AMFPortletKeys;
 import com.liferay.amf.exception.AlphanumericException;
 import com.liferay.amf.exception.MaxCharacterException;
@@ -23,6 +22,7 @@ import com.liferay.amf.exception.SecurityQuestionException;
 import com.liferay.amf.exception.UserBirthdayException;
 import com.liferay.amf.exception.UserPasswordException;
 import com.liferay.amf.exception.UserUsernameException;
+import com.liferay.amf.service.AMFRegistrationLocalService;
 import com.liferay.portal.kernel.exception.AddressZipException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.RegionCodeException;
@@ -103,7 +103,7 @@ public class SubmitRegistrationMVCActionCommand implements MVCActionCommand {
 			serviceContext = ServiceContextFactory.getInstance(
 				User.class.getName(), actionRequest);
 
-			_amfRegistrationService.registerUser(
+			_amfRegistrationLocalService.registerUser(
 				user.getUserId(), company.getCompanyId(), firstName, lastName,
 				emailAddress, locale, username, male, birthdayMonth,
 				birthdayDay, birthdayYear, password1, password2, homePhone,
@@ -133,6 +133,6 @@ public class SubmitRegistrationMVCActionCommand implements MVCActionCommand {
 	}
 
 	@Reference
-	private AMFRegistrationService _amfRegistrationService;
+	private AMFRegistrationLocalService _amfRegistrationLocalService;
 
 }
