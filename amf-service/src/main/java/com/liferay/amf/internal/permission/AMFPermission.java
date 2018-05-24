@@ -14,20 +14,19 @@
 
 package com.liferay.amf.internal.permission;
 
-import com.liferay.amf.constants.AMFPortletKeys;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 
 /**
  * @author Timothy Bell
  */
-public class AMFEventPermission {
+public class AMFPermission {
 
 	public static boolean containsPortletPermission(
-		PermissionChecker permissionChecker, long groupId, String actionId) {
+		PermissionChecker permissionChecker, long groupId, String portletId,
+		String actionId) {
 
 		return permissionChecker.hasPermission(
-			groupId, AMFPortletKeys.AMF_EVENT_MONITORING,
-			AMFPortletKeys.AMF_EVENT_MONITORING, actionId);
+			groupId, portletId, portletId, actionId);
 	}
 
 }

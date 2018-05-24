@@ -14,7 +14,9 @@
 
 package com.liferay.amf.service.impl;
 
-import com.liferay.amf.internal.permission.AMFEventPermission;
+import com.liferay.amf.constants.AMFActionKeys;
+import com.liferay.amf.constants.AMFPortletKeys;
+import com.liferay.amf.internal.permission.AMFPermission;
 import com.liferay.amf.model.AMFEvent;
 import com.liferay.amf.service.base.AMFEventServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -32,9 +34,10 @@ public class AMFEventServiceImpl extends AMFEventServiceBaseImpl {
 			ServiceContext serviceContext, int type, int start, int end)
 		throws PortalException {
 
-		if (AMFEventPermission.containsPortletPermission(
+		if (AMFPermission.containsPortletPermission(
 				getPermissionChecker(), serviceContext.getScopeGroupId(),
-				"VIEW_EVENTS_OTHERS")) {
+				AMFPortletKeys.AMF_EVENT_MONITORING,
+				AMFActionKeys.VIEW_EVENTS_OTHERS)) {
 
 			return amfEventLocalService.getAMFEvents(type, start, end);
 		}
@@ -47,9 +50,10 @@ public class AMFEventServiceImpl extends AMFEventServiceBaseImpl {
 	public int getAMFEventsCount(ServiceContext serviceContext, int type)
 		throws PortalException {
 
-		if (AMFEventPermission.containsPortletPermission(
+		if (AMFPermission.containsPortletPermission(
 				getPermissionChecker(), serviceContext.getScopeGroupId(),
-				"VIEW_EVENTS_OTHERS")) {
+				AMFPortletKeys.AMF_EVENT_MONITORING,
+				AMFActionKeys.VIEW_EVENTS_OTHERS)) {
 
 			return amfEventLocalService.getAMFEventsCount(type);
 		}
