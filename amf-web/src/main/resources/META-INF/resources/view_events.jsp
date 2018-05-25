@@ -17,6 +17,7 @@
 <%@ include file="/init.jsp" %>
 
 <portlet:renderURL var="viewEventsRenderURL">
+	<portlet:param name="delta" value="${delta}" />
 	<portlet:param name="mvcRenderCommandName" value="/view_events" />
 </portlet:renderURL>
 

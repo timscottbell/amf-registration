@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.util.StringUtil;
 import java.util.List;
 
 import javax.portlet.PortletException;
+import javax.portlet.PortletURL;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
@@ -66,14 +67,20 @@ public class ViewEventsMVCRenderCommand implements MVCRenderCommand {
 		int delta = ParamUtil.getInteger(
 			renderRequest, "delta", SearchContainer.DEFAULT_DELTA);
 
+		renderRequest.setAttribute("delta", delta);
+
+		PortletURL portletURL = renderResponse.createRenderURL();
+
+		String tabs1 = ParamUtil.getString(renderRequest, "tabs1", "all");
+
+		portletURL.setParameter("tabs1", tabs1);
+
 		SearchContainer searchContainer = new SearchContainer(
 			renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, delta,
-			renderResponse.createRenderURL(), null, "no-events-were-found");
+			portletURL, null, "no-events-were-found");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			renderRequest);
-
-		String tabs1 = ParamUtil.getString(renderRequest, "tabs1");
 
 		int type = 0;
 
