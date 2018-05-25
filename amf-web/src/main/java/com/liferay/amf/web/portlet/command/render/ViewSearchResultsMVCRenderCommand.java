@@ -62,15 +62,14 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand {
 		int zip = ParamUtil.getInteger(renderRequest, "zip");
 
 		if (zip > 0) {
-			DynamicQuery dynamicQuery = getDynamicQuery(zip);
-
 			List<User> users = _userLocalService.dynamicQuery(
-				dynamicQuery, searchContainer.getStart(),
+				getDynamicQuery(zip), searchContainer.getStart(),
 				searchContainer.getEnd());
 
 			searchContainer.setResults(users);
 
-			int total = (int)_userLocalService.dynamicQueryCount(dynamicQuery);
+			int total = (int)_userLocalService.dynamicQueryCount(
+				getDynamicQuery(zip));
 
 			searchContainer.setTotal(total);
 		}
