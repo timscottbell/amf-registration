@@ -14,13 +14,26 @@
 
 package com.liferay.amf.web.portlet.command.render;
 
+import com.liferay.amf.constants.AMFEventConstants;
 import com.liferay.amf.constants.AMFPortletKeys;
+import com.liferay.amf.model.AMFEvent;
+import com.liferay.amf.service.AMFEventService;
+import com.liferay.portal.kernel.dao.search.SearchContainer;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContextFactory;
+import com.liferay.portal.kernel.util.ParamUtil;
+import com.liferay.portal.kernel.util.StringUtil;
 
+import java.util.List;
+
+import javax.portlet.PortletException;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.Reference;
 
 /**
  * @author Timothy Bell
@@ -28,16 +41,68 @@ import org.osgi.service.component.annotations.Component;
 @Component(
 	property = {
 		"javax.portlet.name=" + AMFPortletKeys.AMF_EVENT_MONITOR,
-		"mvc.command.name=/view_events"
+		"mvc.command.name=/", "mvc.command.name=/view_events"
 	}
 )
 public class ViewEventsMVCRenderCommand implements MVCRenderCommand {
 
 	@Override
 	public String render(
-		RenderRequest renderRequest, RenderResponse renderResponse) {
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws PortletException {
+
+		try {
+			return tryRender(renderRequest, renderResponse);
+		}
+		catch (PortalException pe) {
+			throw new PortletException(pe);
+		}
+	}
+
+	public String tryRender(
+			RenderRequest renderRequest, RenderResponse renderResponse)
+		throws PortalException {
+
+		int delta = ParamUtil.getInteger(
+			renderRequest, "delta", SearchContainer.DEFAULT_DELTA);
+
+		SearchContainer searchContainer = new SearchContainer(
+			renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, delta,
+			renderResponse.createRenderURL(), null, "no-events-were-found");
+
+		ServiceContext serviceContext = ServiceContextFactory.getInstance(
+			renderRequest);
+
+		String tabs1 = ParamUtil.getString(renderRequest, "tabs1");
+
+		int type = 0;
+
+		if (StringUtil.equalsIgnoreCase(tabs1, "all")) {
+			type = AMFEventConstants.TYPE_ANY;
+		}
+		else if (StringUtil.equalsIgnoreCase(tabs1, "registration")) {
+			type = AMFEventConstants.TYPE_REGISTER;
+		}
+		else if (StringUtil.equalsIgnoreCase(tabs1, "login")) {
+			type = AMFEventConstants.TYPE_LOGIN;
+		}
+
+		List<AMFEvent> amfEvents = _amfEventService.getAMFEvents(
+			serviceContext, type, searchContainer.getStart(),
+			searchContainer.getEnd());
+
+		searchContainer.setResults(amfEvents);
+
+		int total = _amfEventService.getAMFEventsCount(serviceContext, type);
+
+		searchContainer.setTotal(total);
+
+		renderRequest.setAttribute("searchContainer", searchContainer);
 
 		return "/view_events.jsp";
 	}
+
+	@Reference
+	private AMFEventService _amfEventService;
 
 }

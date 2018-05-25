@@ -20,28 +20,18 @@ import com.liferay.amf.exception.PhoneException;
 import com.liferay.amf.exception.UserBirthdayException;
 import com.liferay.amf.exception.UserPasswordException;
 import com.liferay.amf.exception.UserUsernameException;
-import com.liferay.amf.model.AMFEvent;
-import com.liferay.amf.service.AMFEventServiceUtil;
-import com.liferay.portal.kernel.dao.search.SearchContainer;
-import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
-import com.liferay.portal.kernel.service.ServiceContext;
-import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
-import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 
 import java.text.DateFormat;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
-
-import javax.servlet.jsp.PageContext;
 
 /**
  * @author Timothy Bell
@@ -135,34 +125,6 @@ public class AMFDisplayContext {
 
 	public RenderResponse getRenderResponse() {
 		return renderResponse;
-	}
-
-	public SearchContainer getSearchContainer(PageContext pageContext)
-		throws PortalException {
-
-		int delta = ParamUtil.getInteger(
-			renderRequest, "delta", SearchContainer.DEFAULT_DELTA);
-
-		SearchContainer searchContainer = new SearchContainer(
-			renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, delta,
-			renderResponse.createRenderURL(), null, "no-events-were-found");
-
-		ServiceContext serviceContext = ServiceContextFactory.getInstance(
-			renderRequest);
-
-		int type = (int)pageContext.getAttribute("type");
-
-		List<AMFEvent> amfEvents = AMFEventServiceUtil.getAMFEvents(
-			serviceContext, type, searchContainer.getStart(),
-			searchContainer.getEnd());
-
-		searchContainer.setResults(amfEvents);
-
-		int total = AMFEventServiceUtil.getAMFEventsCount(serviceContext, type);
-
-		searchContainer.setTotal(total);
-
-		return searchContainer;
 	}
 
 	public ThemeDisplay getThemeDisplay() {

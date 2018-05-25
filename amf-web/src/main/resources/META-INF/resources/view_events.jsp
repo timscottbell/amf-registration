@@ -16,22 +16,46 @@
 
 <%@ include file="/init.jsp" %>
 
-<liferay-ui:tabs names="all,registration,login" refresh="<%= false %>">
-	<liferay-ui:section>
-		<c:set value="<%= AMFEventConstants.TYPE_ANY %>" var="type" />
+<portlet:renderURL var="viewEventsRenderURL">
+	<portlet:param name="mvcRenderCommandName" value="/view_events" />
+</portlet:renderURL>
 
-		<%@ include file="/event_results.jspf" %>
-	</liferay-ui:section>
+<liferay-ui:tabs names="all,registration,login" url="${viewEventsRenderURL}" />
 
-	<liferay-ui:section>
-		<c:set value="<%= AMFEventConstants.TYPE_REGISTER %>" var="type" />
+<liferay-ui:search-container
+	searchContainer="${searchContainer}"
+>
+	<liferay-ui:search-container-results>
+		<liferay-ui:search-container-row
+			className="com.liferay.amf.model.AMFEvent"
+			escapedModel="<%= true %>"
+			keyProperty="amfEventId"
+			modelVar="amfEvent"
+		>
+			<liferay-ui:search-container-column-text
+				value="<%= amfDisplayContext.getFormattedDate(amfEvent.getCreateTime()) %>"
+			/>
 
-		<%@ include file="/event_results.jspf" %>
-	</liferay-ui:section>
+			<liferay-ui:search-container-column-text
+				value="<%= amfEvent.getUserName() %>"
+			/>
 
-	<liferay-ui:section>
-		<c:set value="<%= AMFEventConstants.TYPE_LOGIN %>" var="type" />
+			<liferay-ui:search-container-column-text
+				value="<%= StringPool.OPEN_PARENTHESIS + amfEvent.getUserId() + StringPool.CLOSE_PARENTHESIS %>"
+			/>
 
-		<%@ include file="/event_results.jspf" %>
-	</liferay-ui:section>
-</liferay-ui:tabs>
+			<liferay-ui:search-container-column-text
+				value="<%= amfEvent.getIpAddress() %>"
+			/>
+
+			<liferay-ui:search-container-column-text
+				translate="<%= true %>"
+				value="<%= AMFEventConstants.getTypeLabel(amfEvent.getType()) %>"
+			/>
+		</liferay-ui:search-container-row>
+
+		<liferay-ui:search-iterator
+			markupView="lexicon"
+		/>
+	</liferay-ui:search-container-results>
+</liferay-ui:search-container>
