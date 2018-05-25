@@ -82,14 +82,17 @@ public class AMFRegistrationLocalServiceImpl
 			birthdayYear, StringPool.BLANK, null, null, null, null, false,
 			serviceContext);
 
+		Contact contact = user.getContact();
+
 		Country country = countryService.getCountryByName("united-states");
 
 		Region region = regionService.getRegion(country.getCountryId(), state);
 
 		addressLocalService.addAddress(
-			user.getUserId(), StringPool.BLANK, 0, address1, address2,
-			StringPool.BLANK, city, zip, region.getRegionId(),
-			country.getCountryId(), 0, true, true, serviceContext);
+			user.getUserId(), Contact.class.getName(), contact.getPrimaryKey(),
+			address1, address2, StringPool.BLANK, city, zip,
+			region.getRegionId(), country.getCountryId(), 0, true, true,
+			serviceContext);
 
 		List<ListType> listTypes = listTypeLocalService.getListTypes(
 			ListTypeConstants.CONTACT_PHONE);
