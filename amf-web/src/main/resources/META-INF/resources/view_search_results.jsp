@@ -16,6 +16,8 @@
 
 <%@ include file="/init.jsp" %>
 
+<h4><liferay-ui:message arguments="<%= ParamUtil.getString(renderRequest, "zip")%>" key="search-results-for-x" /></h4>
+
 <liferay-ui:search-container
 	searchContainer="${searchContainer}"
 >
