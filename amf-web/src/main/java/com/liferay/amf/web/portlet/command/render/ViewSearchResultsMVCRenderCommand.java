@@ -52,12 +52,12 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand {
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		SearchContainer searchContainer = new SearchContainer(
-			renderRequest, renderResponse.createRenderURL(), null,
-			"no-results-found-please-try-a-different-search-criteria");
+		int delta = ParamUtil.getInteger(renderRequest, "delta", 5);
 
-		searchContainer.setDelta(5);
-		searchContainer.setDeltaConfigurable(true);
+		SearchContainer searchContainer = new SearchContainer(
+			renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, delta,
+			renderResponse.createRenderURL(), null,
+			"no-results-found-please-try-a-different-search-criteria");
 
 		int zip = ParamUtil.getInteger(renderRequest, "zip");
 

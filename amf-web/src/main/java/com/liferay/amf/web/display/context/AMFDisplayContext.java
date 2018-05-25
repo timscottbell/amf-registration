@@ -29,6 +29,7 @@ import com.liferay.portal.kernel.service.ServiceContext;
 import com.liferay.portal.kernel.service.ServiceContextFactory;
 import com.liferay.portal.kernel.theme.ThemeDisplay;
 import com.liferay.portal.kernel.util.DateFormatFactoryUtil;
+import com.liferay.portal.kernel.util.ParamUtil;
 import com.liferay.portal.kernel.util.StringBundler;
 import com.liferay.portal.kernel.util.StringPool;
 
@@ -139,11 +140,12 @@ public class AMFDisplayContext {
 	public SearchContainer getSearchContainer(PageContext pageContext)
 		throws PortalException {
 
-		SearchContainer searchContainer = new SearchContainer(
-			renderRequest, renderResponse.createRenderURL(), null,
-			"no-events-were-found");
+		int delta = ParamUtil.getInteger(
+			renderRequest, "delta", SearchContainer.DEFAULT_DELTA);
 
-		searchContainer.setDelta(20);
+		SearchContainer searchContainer = new SearchContainer(
+			renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, delta,
+			renderResponse.createRenderURL(), null, "no-events-were-found");
 
 		ServiceContext serviceContext = ServiceContextFactory.getInstance(
 			renderRequest);
