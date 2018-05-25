@@ -88,32 +88,38 @@ public class AMFRegistrationLocalServiceImpl
 
 		Region region = regionService.getRegion(country.getCountryId(), state);
 
+		List<ListType> addressListTypes = listTypeLocalService.getListTypes(
+			ListTypeConstants.CONTACT_ADDRESS);
+
+		ListType addressListType = addressListTypes.get(0);
+
 		addressLocalService.addAddress(
 			user.getUserId(), Contact.class.getName(), contact.getPrimaryKey(),
 			address1, address2, StringPool.BLANK, city, zip,
-			region.getRegionId(), country.getCountryId(), 0, true, true,
-			serviceContext);
+			region.getRegionId(), country.getCountryId(),
+			addressListType.getListTypeId(), true, true, serviceContext);
 
-		List<ListType> listTypes = listTypeLocalService.getListTypes(
+		List<ListType> phoneListTypes = listTypeLocalService.getListTypes(
 			ListTypeConstants.CONTACT_PHONE);
 
-		for (ListType listType : listTypes) {
-			if (StringUtil.equalsIgnoreCase(listType.getName(), "personal") &&
+		for (ListType phoneListType : phoneListTypes) {
+			if (StringUtil.equalsIgnoreCase(
+					phoneListType.getName(), "personal") &&
 				Validator.isNotNull(homePhone)) {
 
 				phoneLocalService.addPhone(
 					creatorUserId, Contact.class.getName(), user.getContactId(),
-					homePhone, StringPool.BLANK, listType.getListTypeId(),
+					homePhone, StringPool.BLANK, phoneListType.getListTypeId(),
 					false, serviceContext);
 			}
 			else if (StringUtil.equalsIgnoreCase(
-						listType.getName(), "mobile-phone") &&
+						phoneListType.getName(), "mobile-phone") &&
 					 Validator.isNotNull(mobilePhone)) {
 
 				phoneLocalService.addPhone(
 					creatorUserId, Contact.class.getName(), user.getContactId(),
-					mobilePhone, StringPool.BLANK, listType.getListTypeId(),
-					false, serviceContext);
+					mobilePhone, StringPool.BLANK,
+					phoneListType.getListTypeId(), false, serviceContext);
 			}
 		}
 
