@@ -19,6 +19,8 @@ package com.liferay.amf.constants;
  */
 public class AMFActionKeys {
 
-	public static final String VIEW_EVENTS_OTHERS = "VIEW_EVENTS_OTHERS";
+	public static final String VIEW_EVENTS = "VIEW_EVENTS";
+
+	public static final String VIEW_USERS = "VIEW_USERS";
 
 }

@@ -2,6 +2,22 @@
 <!DOCTYPE resource-action-mapping PUBLIC "-//Liferay//DTD Resource Action Mapping 7.0.0//EN" "http://www.liferay.com/dtd/liferay-resource-action-mapping_7_0_0.dtd">
 <resource-action-mapping>
 	<model-resource>
+		<model-name>com.liferay.amf.model</model-name>
+		<portlet-ref>
+			<portlet-name>com_liferay_amf_web_portlet_AMFEventMonitorPortlet</portlet-name>
+		</portlet-ref>
+		<permissions>
+			<supports>
+				<action-key>VIEW_EVENTS</action-key>
+			</supports>
+			<site-member-defaults />
+			<guest-defaults />
+			<guest-unsupported>
+				<action-key>VIEW_EVENTS</action-key>
+			</guest-unsupported>
+		</permissions>
+	</model-resource>
+	<model-resource>
 		<model-name>com.liferay.portal.kernel.model</model-name>
 		<portlet-ref>
 			<portlet-name>com_liferay_amf_web_portlet_AMFSearchResultsPortlet</portlet-name>

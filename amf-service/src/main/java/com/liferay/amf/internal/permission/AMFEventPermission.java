@@ -21,12 +21,13 @@ import com.liferay.portal.kernel.security.permission.PermissionChecker;
  */
 public class AMFEventPermission {
 
-	public static boolean containsPortletPermission(
-		PermissionChecker permissionChecker, long groupId, String portletId,
-		String actionId) {
+	public static boolean containsTopLevel(
+		PermissionChecker permissionChecker, long groupId, String actionId) {
 
 		return permissionChecker.hasPermission(
-			groupId, portletId, portletId, actionId);
+			groupId, _TOP_LEVEL_RESOURCE, groupId, actionId);
 	}
+
+	private static final String _TOP_LEVEL_RESOURCE = "com.liferay.amf.model";
 
 }

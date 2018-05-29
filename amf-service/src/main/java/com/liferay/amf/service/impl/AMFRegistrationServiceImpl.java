@@ -14,6 +14,7 @@
 
 package com.liferay.amf.service.impl;
 
+import com.liferay.amf.constants.AMFActionKeys;
 import com.liferay.amf.internal.permission.UserPermission;
 import com.liferay.amf.service.base.AMFRegistrationServiceBaseImpl;
 import com.liferay.portal.kernel.exception.PortalException;
@@ -32,7 +33,7 @@ public class AMFRegistrationServiceImpl extends AMFRegistrationServiceBaseImpl {
 		throws PortalException {
 
 		UserPermission.checkTopLevel(
-			getPermissionChecker(), groupId, _VIEW_USERS);
+			getPermissionChecker(), groupId, AMFActionKeys.VIEW_USERS);
 
 		return amfRegistrationLocalService.getRegisteredUsers(zip, start, end);
 	}
@@ -42,11 +43,9 @@ public class AMFRegistrationServiceImpl extends AMFRegistrationServiceBaseImpl {
 		throws PortalException {
 
 		UserPermission.checkTopLevel(
-			getPermissionChecker(), groupId, _VIEW_USERS);
+			getPermissionChecker(), groupId, AMFActionKeys.VIEW_USERS);
 
 		return amfRegistrationLocalService.getRegisteredUsersCount(zip);
 	}
-
-	private static final String _VIEW_USERS = "VIEW_USERS";
 
 }
