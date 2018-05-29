@@ -47,6 +47,6 @@ public class AMFRegistrationServiceImpl extends AMFRegistrationServiceBaseImpl {
 		return amfRegistrationLocalService.getRegisteredUsersCount(zip);
 	}
 
-	private static final String _VIEW_USERS = "_VIEW_USERS";
+	private static final String _VIEW_USERS = "VIEW_USERS";
 
 }

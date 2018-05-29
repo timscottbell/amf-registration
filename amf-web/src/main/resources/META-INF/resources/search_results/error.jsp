@@ -18,6 +18,4 @@
 
 <liferay-ui:error-header />
 
-<liferay-ui:error exception="<%= PrincipalException.MustHavePermission.class %>" message="you-do-not-have-the-required-permissions" />
-
 <liferay-ui:error-principal />
