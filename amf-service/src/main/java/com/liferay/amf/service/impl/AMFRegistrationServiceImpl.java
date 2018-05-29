@@ -14,26 +14,39 @@
 
 package com.liferay.amf.service.impl;
 
+import com.liferay.amf.internal.permission.UserPermission;
 import com.liferay.amf.service.base.AMFRegistrationServiceBaseImpl;
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.model.User;
+
+import java.util.List;
 
 /**
- * The implementation of the amf registration remote service.
- *
- * <p>
- * All custom service methods should be put in this class. Whenever methods are added, rerun ServiceBuilder to copy their definitions into the {@link com.liferay.amf.service.AMFRegistrationService} interface.
- *
- * <p>
- * This is a remote service. Methods of this service are expected to have security checks based on the propagated JAAS credentials because this service can be accessed remotely.
- * </p>
- *
  * @author Timothy Bell
- * @see AMFRegistrationServiceBaseImpl
- * @see com.liferay.amf.service.AMFRegistrationServiceUtil
  */
 public class AMFRegistrationServiceImpl extends AMFRegistrationServiceBaseImpl {
-	/*
-	 * NOTE FOR DEVELOPERS:
-	 *
-	 * Never reference this class directly. Always use {@link com.liferay.amf.service.AMFRegistrationServiceUtil} to access the amf registration remote service.
-	 */
+
+	@Override
+	public List<User> getRegisteredUsers(
+			int zip, long groupId, int start, int end)
+		throws PortalException {
+
+		UserPermission.checkTopLevel(
+			getPermissionChecker(), groupId, _VIEW_USERS);
+
+		return amfRegistrationLocalService.getRegisteredUsers(zip, start, end);
+	}
+
+	@Override
+	public int getRegisteredUsersCount(int zip, long groupId)
+		throws PortalException {
+
+		UserPermission.checkTopLevel(
+			getPermissionChecker(), groupId, _VIEW_USERS);
+
+		return amfRegistrationLocalService.getRegisteredUsersCount(zip);
+	}
+
+	private static final String _VIEW_USERS = "_VIEW_USERS";
+
 }

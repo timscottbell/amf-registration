@@ -15,18 +15,14 @@
 package com.liferay.amf.web.portlet.command.render;
 
 import com.liferay.amf.constants.AMFPortletKeys;
-import com.liferay.portal.kernel.dao.orm.DynamicQuery;
-import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.Projection;
-import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.Property;
-import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
-import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
+import com.liferay.amf.service.AMFRegistrationService;
 import com.liferay.portal.kernel.dao.search.SearchContainer;
-import com.liferay.portal.kernel.model.Address;
+import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.model.User;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
-import com.liferay.portal.kernel.service.UserLocalService;
+import com.liferay.portal.kernel.service.ServiceContext;
+import com.liferay.portal.kernel.service.ServiceContextFactory;
+import com.liferay.portal.kernel.servlet.SessionErrors;
 import com.liferay.portal.kernel.util.ParamUtil;
 
 import java.util.List;
@@ -52,60 +48,47 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand {
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		int zip = ParamUtil.getInteger(renderRequest, "zip");
+		try {
+			int zip = ParamUtil.getInteger(renderRequest, "zip");
 
-		renderRequest.setAttribute("zip", zip);
+			renderRequest.setAttribute("zip", zip);
 
-		int delta = ParamUtil.getInteger(renderRequest, "delta", 5);
+			int delta = ParamUtil.getInteger(renderRequest, "delta", 5);
 
-		SearchContainer searchContainer = new SearchContainer(
-			renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, delta,
-			renderResponse.createRenderURL(), null,
-			"no-results-found-please-try-a-different-search-criteria");
+			SearchContainer searchContainer = new SearchContainer(
+				renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM,
+				delta, renderResponse.createRenderURL(), null,
+				"no-results-found-please-try-a-different-search-criteria");
 
-		if (zip > 0) {
-			List<User> users = _userLocalService.dynamicQuery(
-				getDynamicQuery(zip), searchContainer.getStart(),
-				searchContainer.getEnd());
+			if (zip > 0) {
+				ServiceContext serviceContext =
+					ServiceContextFactory.getInstance(
+						User.class.getName(), renderRequest);
 
-			searchContainer.setResults(users);
+				List<User> users = _amfRegistrationService.getRegisteredUsers(
+					zip, serviceContext.getScopeGroupId(),
+					searchContainer.getStart(), searchContainer.getEnd());
 
-			int total = (int)_userLocalService.dynamicQueryCount(
-				getDynamicQuery(zip));
+				searchContainer.setResults(users);
 
-			searchContainer.setTotal(total);
+				int total = _amfRegistrationService.getRegisteredUsersCount(
+					zip, serviceContext.getScopeGroupId());
+
+				searchContainer.setTotal(total);
+			}
+
+			renderRequest.setAttribute("searchContainer", searchContainer);
 		}
+		catch (PortalException pe) {
+			SessionErrors.add(renderRequest, pe.getClass(), pe);
 
-		renderRequest.setAttribute("searchContainer", searchContainer);
+			return "/search_results/error.jsp";
+		}
 
 		return "/search_results/view.jsp";
 	}
 
-	protected DynamicQuery getDynamicQuery(int zip) {
-		DynamicQuery addressDynamicQuery = DynamicQueryFactoryUtil.forClass(
-			Address.class);
-
-		Projection userIdProjection = ProjectionFactoryUtil.property("userId");
-
-		addressDynamicQuery.setProjection(
-			ProjectionFactoryUtil.distinct(userIdProjection));
-
-		addressDynamicQuery.add(
-			RestrictionsFactoryUtil.eq("zip", String.valueOf(zip)));
-
-		addressDynamicQuery.add(RestrictionsFactoryUtil.eq("primary", true));
-
-		DynamicQuery userDynamicQuery = DynamicQueryFactoryUtil.forClass(
-			User.class);
-
-		Property userIdProperty = PropertyFactoryUtil.forName("userId");
-
-		userDynamicQuery.add(userIdProperty.in(addressDynamicQuery));
-
-		return userDynamicQuery;
-	}
-
 	@Reference
-	private UserLocalService _userLocalService;
+	private AMFRegistrationService _amfRegistrationService;
 
 }

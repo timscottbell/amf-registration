@@ -25,10 +25,18 @@ import com.liferay.amf.exception.UserEmailAddressException;
 import com.liferay.amf.exception.UserPasswordException;
 import com.liferay.amf.exception.UserUsernameException;
 import com.liferay.amf.service.base.AMFRegistrationLocalServiceBaseImpl;
+import com.liferay.portal.kernel.dao.orm.DynamicQuery;
+import com.liferay.portal.kernel.dao.orm.DynamicQueryFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Projection;
+import com.liferay.portal.kernel.dao.orm.ProjectionFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.Property;
+import com.liferay.portal.kernel.dao.orm.PropertyFactoryUtil;
+import com.liferay.portal.kernel.dao.orm.RestrictionsFactoryUtil;
 import com.liferay.portal.kernel.exception.AddressZipException;
 import com.liferay.portal.kernel.exception.PortalException;
 import com.liferay.portal.kernel.exception.RegionCodeException;
 import com.liferay.portal.kernel.exception.TermsOfUseException;
+import com.liferay.portal.kernel.model.Address;
 import com.liferay.portal.kernel.model.Contact;
 import com.liferay.portal.kernel.model.Country;
 import com.liferay.portal.kernel.model.ListType;
@@ -56,6 +64,16 @@ import java.util.regex.Pattern;
  */
 public class AMFRegistrationLocalServiceImpl
 	extends AMFRegistrationLocalServiceBaseImpl {
+
+	@Override
+	public List<User> getRegisteredUsers(int zip, int start, int end) {
+		return userLocalService.dynamicQuery(getDynamicQuery(zip), start, end);
+	}
+
+	@Override
+	public int getRegisteredUsersCount(int zip) {
+		return (int)userLocalService.dynamicQueryCount(getDynamicQuery(zip));
+	}
 
 	@Override
 	public User registerUser(
@@ -130,6 +148,30 @@ public class AMFRegistrationLocalServiceImpl
 			user.getUserId(), acceptedTOU);
 
 		return user;
+	}
+
+	protected DynamicQuery getDynamicQuery(int zip) {
+		DynamicQuery addressDynamicQuery = DynamicQueryFactoryUtil.forClass(
+			Address.class);
+
+		Projection userIdProjection = ProjectionFactoryUtil.property("userId");
+
+		addressDynamicQuery.setProjection(
+			ProjectionFactoryUtil.distinct(userIdProjection));
+
+		addressDynamicQuery.add(
+			RestrictionsFactoryUtil.eq("zip", String.valueOf(zip)));
+
+		addressDynamicQuery.add(RestrictionsFactoryUtil.eq("primary", true));
+
+		DynamicQuery userDynamicQuery = DynamicQueryFactoryUtil.forClass(
+			User.class);
+
+		Property userIdProperty = PropertyFactoryUtil.forName("userId");
+
+		userDynamicQuery.add(userIdProperty.in(addressDynamicQuery));
+
+		return userDynamicQuery;
 	}
 
 	protected void validate(

@@ -14,19 +14,33 @@
 
 package com.liferay.amf.internal.permission;
 
+import com.liferay.portal.kernel.exception.PortalException;
+import com.liferay.portal.kernel.security.auth.PrincipalException;
 import com.liferay.portal.kernel.security.permission.PermissionChecker;
 
 /**
  * @author Timothy Bell
  */
-public class AMFPermission {
+public class UserPermission {
 
-	public static boolean containsPortletPermission(
-		PermissionChecker permissionChecker, long groupId, String portletId,
-		String actionId) {
+	public static void checkTopLevel(
+			PermissionChecker permissionChecker, long groupId, String actionId)
+		throws PortalException {
+
+		if (!containsTopLevel(permissionChecker, groupId, actionId)) {
+			throw new PrincipalException.MustHavePermission(
+				permissionChecker, actionId);
+		}
+	}
+
+	public static boolean containsTopLevel(
+		PermissionChecker permissionChecker, long groupId, String actionId) {
 
 		return permissionChecker.hasPermission(
-			groupId, portletId, portletId, actionId);
+			groupId, _TOP_LEVEL_RESOURCE, groupId, actionId);
 	}
+
+	private static final String _TOP_LEVEL_RESOURCE =
+		"com.liferay.portal.kernel.model";
 
 }
