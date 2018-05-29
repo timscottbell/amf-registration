@@ -55,6 +55,11 @@ public class AMFRegistrationLocalServiceWrapper
 			zip, securityQuestion, securityAnswer, acceptedTOU, serviceContext);
 	}
 
+	@Override
+	public int getRegisteredUsersCount(int zip) {
+		return _amfRegistrationLocalService.getRegisteredUsersCount(zip);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -63,6 +68,12 @@ public class AMFRegistrationLocalServiceWrapper
 	@Override
 	public java.lang.String getOSGiServiceIdentifier() {
 		return _amfRegistrationLocalService.getOSGiServiceIdentifier();
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.User> getRegisteredUsers(
+		int zip, int start, int end) {
+		return _amfRegistrationLocalService.getRegisteredUsers(zip, start, end);
 	}
 
 	@Override

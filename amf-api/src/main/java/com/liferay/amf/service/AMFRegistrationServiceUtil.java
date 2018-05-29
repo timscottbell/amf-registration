@@ -41,6 +41,10 @@ public class AMFRegistrationServiceUtil {
 	 *
 	 * Never modify this class directly. Add custom service methods to {@link com.liferay.amf.service.impl.AMFRegistrationServiceImpl} and rerun ServiceBuilder to regenerate this class.
 	 */
+	public static int getRegisteredUsersCount(int zip, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getRegisteredUsersCount(zip, groupId);
+	}
 
 	/**
 	* Returns the OSGi service identifier.
@@ -49,6 +53,12 @@ public class AMFRegistrationServiceUtil {
 	*/
 	public static java.lang.String getOSGiServiceIdentifier() {
 		return getService().getOSGiServiceIdentifier();
+	}
+
+	public static java.util.List<com.liferay.portal.kernel.model.User> getRegisteredUsers(
+		int zip, long groupId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return getService().getRegisteredUsers(zip, groupId, start, end);
 	}
 
 	public static AMFRegistrationService getService() {

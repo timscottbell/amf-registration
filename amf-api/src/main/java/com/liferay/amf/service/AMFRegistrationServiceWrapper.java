@@ -33,6 +33,12 @@ public class AMFRegistrationServiceWrapper implements AMFRegistrationService,
 		_amfRegistrationService = amfRegistrationService;
 	}
 
+	@Override
+	public int getRegisteredUsersCount(int zip, long groupId)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _amfRegistrationService.getRegisteredUsersCount(zip, groupId);
+	}
+
 	/**
 	* Returns the OSGi service identifier.
 	*
@@ -41,6 +47,14 @@ public class AMFRegistrationServiceWrapper implements AMFRegistrationService,
 	@Override
 	public java.lang.String getOSGiServiceIdentifier() {
 		return _amfRegistrationService.getOSGiServiceIdentifier();
+	}
+
+	@Override
+	public java.util.List<com.liferay.portal.kernel.model.User> getRegisteredUsers(
+		int zip, long groupId, int start, int end)
+		throws com.liferay.portal.kernel.exception.PortalException {
+		return _amfRegistrationService.getRegisteredUsers(zip, groupId, start,
+			end);
 	}
 
 	@Override

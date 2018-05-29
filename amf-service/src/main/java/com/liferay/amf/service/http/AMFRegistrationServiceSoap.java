@@ -16,9 +16,16 @@ package com.liferay.amf.service.http;
 
 import aQute.bnd.annotation.ProviderType;
 
+import com.liferay.amf.service.AMFRegistrationServiceUtil;
+
+import com.liferay.portal.kernel.log.Log;
+import com.liferay.portal.kernel.log.LogFactoryUtil;
+
+import java.rmi.RemoteException;
+
 /**
  * Provides the SOAP utility for the
- * {@link com.liferay.amf.service.AMFRegistrationServiceUtil} service utility. The
+ * {@link AMFRegistrationServiceUtil} service utility. The
  * static methods of this class calls the same methods of the service utility.
  * However, the signatures are different because it is difficult for SOAP to
  * support certain types.
@@ -42,9 +49,40 @@ import aQute.bnd.annotation.ProviderType;
  *
  * @author Timothy Bell
  * @see AMFRegistrationServiceHttp
- * @see com.liferay.amf.service.AMFRegistrationServiceUtil
+ * @see AMFRegistrationServiceUtil
  * @generated
  */
 @ProviderType
 public class AMFRegistrationServiceSoap {
+	public static com.liferay.portal.kernel.model.User[] getRegisteredUsers(
+		int zip, long groupId, int start, int end) throws RemoteException {
+		try {
+			java.util.List<com.liferay.portal.kernel.model.User> returnValue = AMFRegistrationServiceUtil.getRegisteredUsers(zip,
+					groupId, start, end);
+
+			return returnValue.toArray(new com.liferay.portal.kernel.model.User[returnValue.size()]);
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	public static int getRegisteredUsersCount(int zip, long groupId)
+		throws RemoteException {
+		try {
+			int returnValue = AMFRegistrationServiceUtil.getRegisteredUsersCount(zip,
+					groupId);
+
+			return returnValue;
+		}
+		catch (Exception e) {
+			_log.error(e, e);
+
+			throw new RemoteException(e.getMessage());
+		}
+	}
+
+	private static Log _log = LogFactoryUtil.getLog(AMFRegistrationServiceSoap.class);
 }
