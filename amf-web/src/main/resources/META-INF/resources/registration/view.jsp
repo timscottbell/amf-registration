@@ -66,19 +66,19 @@
 
 			<aui:fieldset label="basic-info">
 				<aui:col width="<%= 50 %>">
-					<aui:input label="first-name" name="first_name" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "first_name") %>' />
-					<aui:input label="last-name" name="last_name" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "last_name") %>' />
-					<aui:input label="email-address" name="email_address" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "email_address") %>' />
-					<aui:input label="username" name="username" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "username") %>' />
+					<aui:input label="first-name" name="first_name" required="true" type="text" value="${first_name}" />
+					<aui:input label="last-name" name="last_name" required="true" type="text" value="${last_name}" />
+					<aui:input label="email-address" name="email_address" required="true" type="text" value="${email_address}" />
+					<aui:input label="username" name="username" required="true" type="text" value="${username}" />
 
-					<aui:select label="gender" name="male" required="true" value='<%= ParamUtil.getString(renderRequest, "male") %>'>
+					<aui:select label="gender" name="male" required="true" value="${male}">
 						<aui:option label="male" value="true" />
 						<aui:option label="female" value="false" />
 					</aui:select>
 				</aui:col>
 
 				<aui:col width="<%= 50 %>">
-					<aui:select label="birthday-month" name="b_month" required="true" value='<%= ParamUtil.getString(renderRequest, "b_month") %>'>
+					<aui:select label="birthday-month" name="b_month" required="true" value="${b_month}">
 						<aui:option label="january" value="<%= Calendar.JANUARY %>" />
 						<aui:option label="february" value="<%= Calendar.FEBRUARY %>" />
 						<aui:option label="march" value="<%= Calendar.MARCH %>" />
@@ -93,11 +93,11 @@
 						<aui:option label="december" value="<%= Calendar.DECEMBER %>" />
 					</aui:select>
 
-					<aui:input label="birthday-day" name="b_day" required="true" type="number" value='<%= ParamUtil.getString(renderRequest, "b_day", "1") %>' />
-					<aui:input label="birthday-year" name="b_year" required="true" type="number" value='<%= ParamUtil.getString(renderRequest, "b_year", "1970") %>' />
-					<aui:input label="password" name="password1" required="true" type="password" value='<%= ParamUtil.getString(renderRequest, "password1") %>' />
+					<aui:input label="birthday-day" name="b_day" required="true" type="number" value="${b_month}" />
+					<aui:input label="birthday-year" name="b_year" required="true" type="number" value="${b_year}" />
+					<aui:input label="password" name="password1" required="true" type="password" value="${password1}" />
 
-					<aui:input label="confirm-password" name="password2" required="true" type="password" value='<%= ParamUtil.getString(renderRequest, "password2") %>'>
+					<aui:input label="confirm-password" name="password2" required="true" type="password" value="${password2}">
 						<aui:validator name="equalTo">
 							"#<portlet:namespace />password1"
 						</aui:validator>
@@ -107,30 +107,30 @@
 
 			<aui:fieldset label="phone">
 				<aui:col width="<%= 50 %>">
-					<aui:input label="home-phone" name="home_phone" type="number" value='<%= ParamUtil.getString(renderRequest, "home_phone") %>' />
+					<aui:input label="home-phone" name="home_phone" type="number" value="${home_phone}" />
 				</aui:col>
 
 				<aui:col width="<%= 50 %>">
-					<aui:input label="mobile-phone" name="mobile_phone" type="number" value='<%= ParamUtil.getString(renderRequest, "mobile_phone") %>' />
+					<aui:input label="mobile-phone" name="mobile_phone" type="number" value="${mobile_phone}" />
 				</aui:col>
 			</aui:fieldset>
 
 			<aui:fieldset label="billing-address-us-only">
 				<aui:col width="<%= 50 %>">
-					<aui:input label="address-1" name="address1" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "address1") %>' />
-					<aui:input label="address-2" name="address2" type="text" value='<%= ParamUtil.getString(renderRequest, "address2") %>' />
-					<aui:input label="city" name="city" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "city") %>' />
+					<aui:input label="address-1" name="address1" required="true" type="text" value="${address1}" />
+					<aui:input label="address-2" name="address2" type="text" value="${address2}" />
+					<aui:input label="city" name="city" required="true" type="text" value="${city}" />
 				</aui:col>
 
 				<aui:col width="<%= 50 %>">
-					<aui:input label="state" name="state" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "state") %>' />
-					<aui:input label="zip-code" name="zip" required="true" type="number" value='<%= ParamUtil.getString(renderRequest, "zip") %>' />
+					<aui:input label="state" name="state" required="true" type="text" value="${state}" />
+					<aui:input label="zip-code" name="zip" required="true" type="number" value="${zip}" />
 				</aui:col>
 			</aui:fieldset>
 
 			<aui:fieldset label="misc">
 				<aui:col width="<%= 50 %>">
-					<aui:select label="security-question" name="security_question" required="true" value='<%= ParamUtil.getString(renderRequest, "security_question") %>'>
+					<aui:select label="security-question" name="security_question" required="true" value="${security_question}">
 						<c:forEach items="<%= AMFRegistrationConstants.SECURITY_QUESTIONS %>" var="securityQuestion">
 							<aui:option label="${securityQuestion}" />
 						</c:forEach>
@@ -138,12 +138,12 @@
 				</aui:col>
 
 				<aui:col width="<%= 50 %>">
-					<aui:input label="security-answer" name="security_answer" required="true" type="text" value='<%= ParamUtil.getString(renderRequest, "security_answer") %>' />
+					<aui:input label="security-answer" name="security_answer" required="true" type="text" value="${security_answer}" />
 				</aui:col>
 			</aui:fieldset>
 
 			<aui:button onClick='<%= renderResponse.getNamespace() + "viewTermsOfUse();" %>' value="terms-of-use" />
-			<aui:input label="i-have-read-understand-and-agree-with-the-terms-of-use-governing-my-access-to-and-use-of-the-acme-movie-fanatic-website" name="accepted_tou" required="true" type="checkbox" value='<%= ParamUtil.getString(renderRequest, "accepted_tou") %>' />
+			<aui:input label="i-have-read-understand-and-agree-with-the-terms-of-use-governing-my-access-to-and-use-of-the-acme-movie-fanatic-website" name="accepted_tou" required="true" type="checkbox" value="${accepted_TOU}" />
 
 			<aui:button-row>
 				<aui:button cssClass="btn-lg" type="submit" />

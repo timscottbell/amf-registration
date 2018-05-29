@@ -52,14 +52,16 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand {
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
+		int zip = ParamUtil.getInteger(renderRequest, "zip");
+
+		renderRequest.setAttribute("zip", zip);
+
 		int delta = ParamUtil.getInteger(renderRequest, "delta", 5);
 
 		SearchContainer searchContainer = new SearchContainer(
 			renderRequest, null, null, SearchContainer.DEFAULT_CUR_PARAM, delta,
 			renderResponse.createRenderURL(), null,
 			"no-results-found-please-try-a-different-search-criteria");
-
-		int zip = ParamUtil.getInteger(renderRequest, "zip");
 
 		if (zip > 0) {
 			List<User> users = _userLocalService.dynamicQuery(

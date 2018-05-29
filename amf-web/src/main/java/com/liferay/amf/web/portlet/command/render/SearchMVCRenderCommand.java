@@ -16,6 +16,7 @@ package com.liferay.amf.web.portlet.command.render;
 
 import com.liferay.amf.constants.AMFPortletKeys;
 import com.liferay.portal.kernel.portlet.bridges.mvc.MVCRenderCommand;
+import com.liferay.portal.kernel.util.ParamUtil;
 
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
@@ -36,6 +37,10 @@ public class SearchMVCRenderCommand implements MVCRenderCommand {
 	@Override
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
+
+		int zip = ParamUtil.getInteger(renderRequest, "zip");
+
+		renderRequest.setAttribute("zip", zip);
 
 		return "/search/view.jsp";
 	}

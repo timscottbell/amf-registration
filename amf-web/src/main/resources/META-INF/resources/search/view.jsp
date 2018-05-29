@@ -23,7 +23,7 @@
 <aui:form action="<%= searchURL %>" method="post" name="fm">
 	<liferay-ui:error exception="<%= AddressZipException.class %>" message="the-zip-code-must-be-five-digits-long" />
 
-	<aui:input label="enter-us-zip" name="zip" required="true" type="number" value='<%= ParamUtil.getString(renderRequest, "zip") %>' />
+	<aui:input label="enter-us-zip" name="zip" required="true" type="number" value="${zip}" />
 
 	<aui:button-row>
 		<aui:button cssClass="btn-lg" type="submit" value="search" />
