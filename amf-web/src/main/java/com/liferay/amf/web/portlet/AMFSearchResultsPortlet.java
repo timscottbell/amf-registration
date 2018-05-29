@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
 		"com.liferay.portlet.display-category=category.tools",
 		"javax.portlet.display-name=AMF Search Results",
 		"javax.portlet.init-param.template-path=/",
-		"javax.portlet.init-param.view-template=/view_search_results.jsp",
+		"javax.portlet.init-param.view-template=/search_results/view.jsp",
 		"javax.portlet.name=" + AMFPortletKeys.AMF_SEARCH_RESULTS,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user",

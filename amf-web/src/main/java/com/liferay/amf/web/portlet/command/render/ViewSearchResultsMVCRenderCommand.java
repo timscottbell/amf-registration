@@ -76,7 +76,7 @@ public class ViewSearchResultsMVCRenderCommand implements MVCRenderCommand {
 
 		renderRequest.setAttribute("searchContainer", searchContainer);
 
-		return "/view_search_results.jsp";
+		return "/search_results/view.jsp";
 	}
 
 	protected DynamicQuery getDynamicQuery(int zip) {

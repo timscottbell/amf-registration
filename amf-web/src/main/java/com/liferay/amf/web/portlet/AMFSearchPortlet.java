@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.display-name=AMF Search",
 		"javax.portlet.init-param.copy-request-parameters=true",
 		"javax.portlet.init-param.template-path=/",
-		"javax.portlet.init-param.view-template=/search.jsp",
+		"javax.portlet.init-param.view-template=/search/view.jsp",
 		"javax.portlet.name=" + AMFPortletKeys.AMF_SEARCH,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user",

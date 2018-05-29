@@ -37,7 +37,7 @@ public class ViewTermsOfUseMVCRenderCommand implements MVCRenderCommand {
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		return "/view_terms_of_use.jsp";
+		return "/registration/view_terms_of_use.jsp";
 	}
 
 }

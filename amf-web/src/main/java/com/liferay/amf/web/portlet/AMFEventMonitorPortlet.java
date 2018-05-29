@@ -30,7 +30,7 @@ import org.osgi.service.component.annotations.Component;
 		"com.liferay.portlet.display-category=category.tools",
 		"javax.portlet.display-name=AMF Event Monitor",
 		"javax.portlet.init-param.template-path=/",
-		"javax.portlet.init-param.view-template=/view_events.jsp",
+		"javax.portlet.init-param.view-template=/event_monitor/view.jsp",
 		"javax.portlet.name=" + AMFPortletKeys.AMF_EVENT_MONITOR,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user"

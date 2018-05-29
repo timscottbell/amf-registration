@@ -106,7 +106,7 @@ public class ViewEventsMVCRenderCommand implements MVCRenderCommand {
 
 		renderRequest.setAttribute("searchContainer", searchContainer);
 
-		return "/view_events.jsp";
+		return "/event_monitor/view.jsp";
 	}
 
 	@Reference

@@ -37,7 +37,7 @@ public class SubmitRegistrationMVCRenderCommand implements MVCRenderCommand {
 	public String render(
 		RenderRequest renderRequest, RenderResponse renderResponse) {
 
-		return "/submit_registration.jsp";
+		return "/registration/view.jsp";
 	}
 
 }

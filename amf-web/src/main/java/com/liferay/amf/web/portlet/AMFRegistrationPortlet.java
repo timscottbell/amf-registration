@@ -31,7 +31,7 @@ import org.osgi.service.component.annotations.Component;
 		"javax.portlet.display-name=AMF Registration",
 		"javax.portlet.init-param.copy-request-parameters=true",
 		"javax.portlet.init-param.template-path=/",
-		"javax.portlet.init-param.view-template=/submit_registration.jsp",
+		"javax.portlet.init-param.view-template=/registration/view.jsp",
 		"javax.portlet.name=" + AMFPortletKeys.AMF_REGISTRATION,
 		"javax.portlet.resource-bundle=content.Language",
 		"javax.portlet.security-role-ref=power-user,user"
