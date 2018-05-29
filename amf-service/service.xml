@@ -40,7 +40,7 @@
 			<finder-column name="type" />
 		</finder>
 	</entity>
-	<entity local-service="true" name="AMFRegistration" remote-service="false" >
+	<entity local-service="true" name="AMFRegistration" remote-service="true" >
 
 		<!-- References -->
 
